@@ -21,7 +21,7 @@
               <i class="material-icons">arrow_back_ios</i>
             </button>
             <span class="text-lg px-4 py-2">
-              Página {{ currentPage }} de {{ totalPages }}
+              {{ $t('paginator.page') }} {{ currentPage }} {{ $t('paginator.of') }} {{ totalPages }}
             </span>
             <button @click="nextPage" :disabled="currentPage >= totalPages"
               class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 disabled:bg-gray-400 btn btn-outline-dark btn-sm">
