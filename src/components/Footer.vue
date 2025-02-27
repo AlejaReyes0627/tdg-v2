@@ -5,7 +5,7 @@
             <div class="col">
                 <h6 class="footerMsg">
                     <strong>
-                        Social Networks
+                        {{ $t('footer_page.footer_social_networks') }}
                     </strong>
                 </h6>
                 <div class="row rowIcons">
@@ -22,7 +22,7 @@
                 </div>
                 <br>
                 <div class="row text-sm-center">
-                    <h6><a type="button" class="btn btn-outline-light"> Credits </a>
+                    <h6><a type="button" class="btn btn-outline-light"> {{ $t('footer_page.footer_credits') }} </a>
                     </h6>
                 </div>
 
@@ -35,7 +35,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <p class="footerMsg">DOER (Digital Open Educational Resource) Software Engineering - Copyright
+            <p class="footerMsg">{{ $t('footer_page.footer_copyright') }}
                  ©
             </p>
         </div>
