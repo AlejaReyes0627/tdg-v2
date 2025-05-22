@@ -6,7 +6,7 @@
             <div class="card" style="max-width: 100%;">
               <div class="row">
                 <div class="col-md-4">
-                  <img src="../../../public/assets/images/ingenieriadesoftware.jpg" class="img-fluid rounded-start"
+                  <img src="/assets/images/ingenieriadesoftware.jpg" class="img-fluid rounded-start"
                     alt="..." style="width: 100%; height: 100%;">
                 </div>
                 <div class="col-md-8">
@@ -132,11 +132,11 @@
   
   body h1 {
     text-align: start;
-    font-family: 'Impact';
+    font-family: 'Arial';
   }
   
   body h2 {
-    font-family: 'Impact';
+    font-family: 'Arial';
   }
   
   .first-multimedia .row .col {

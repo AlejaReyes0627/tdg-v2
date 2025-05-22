@@ -9,6 +9,7 @@ const messages = {
     webDevelop_tittle: 'Web Development',
     softwareConfig_tittle: 'SCM',
     select_language_text: 'Select Language...',
+    contact_title:'Contact',
     language_1: 'Spanish',
     language_2: 'English',
     principal_page: {
@@ -22,6 +23,8 @@ const messages = {
       mini_game_url: 'https://es.educaplay.com/juego/15063522-.html',
     },
     isw_page: {
+      main_title:'Software Engineering',
+      main_body:'Training professionals to design and develop high-quality, reliable, and scalable software solutions for the challenges of the digital age.',
       first_card_tittle: '¿What is Software Engineering?',
       middle_card_text: '"Software engineering is a discipline of computer science that focuses on the development and maintenance of high-quality software systems and reliability. This discipline is based on a set of methods, tools and techniques for the construction and evolution of software that meets customer requirements, be easy to maintain and free from bugs. Software engineering involves the use of formal models and processes for the software development. These models and processes include the specification of requirements, the design of software architectures, the implementation of software, the verification and validation of the software and the management of the configuration of the software."',
       created_card_text: 'Last edition in ',
@@ -67,6 +70,7 @@ const messages = {
     webDevelop_tittle: 'Desarrollo Web',
     softwareConfig_tittle: 'GCS',
     select_language_text: 'Seleccione Idioma...',
+    contact_title:'Contacto',
     language_1: 'Español',
     language_2: 'Inglés',
     principal_page: {
@@ -80,6 +84,8 @@ const messages = {
       mini_game_url: 'https://es.educaplay.com/juego/14775635-de_que_tratara_realmente_el_contenido.html',
     },
     isw_page: {
+      main_title:'Ingeniería de Software',
+      main_body:'Formando profesionales para diseñar y desarrollar soluciones de software de alta calidad, confiables y escalables para los desafíos de la era digital.',
       first_card_tittle: '¿Qué es la Ingeniería de Software?',
       middle_card_text: '"La ingeniería de software es una disciplina de la informática que se enfoca en el desarrollo y mantenimiento de sistemas de software de alta calidad y confiabilidad. Esta disciplina se basa en un conjunto de métodos, herramientas y técnicas para la construcción y evolución de software que cumpla con los requisitos del cliente, sea fácil de mantener y esté libre de errores. La ingeniería de software implica el uso de modelos y procesos formales para el desarrollo de software. Estos modelos y procesos incluyen la especificación de requisitos, el diseño de arquitecturas de software, la implementación de software, la verificación y validación del software y la gestión de la configuración del software."',
       created_card_text: 'Última edición en ',

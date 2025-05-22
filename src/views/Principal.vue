@@ -1,45 +1,40 @@
 <template>
 
   <body>
-    <div class="container">
-      <div class="square-box">
-        <section id="presentation-main">
-          <div class="container">
-            <div class="card">
-              <div class="card-header">
-                <h1>{{ $t('principal_page.first_card_tittle') }}</h1>
-              </div>
-              <div class="card-body">
-                <p><strong>{{ $t('principal_page.first_card_bold_text') }}</strong>
-                  <br>
-                  {{ $t('principal_page.first_card_text') }} <strong>{{ $t('principal_page.last_card_bold_text')
-                    }}</strong>
-                </p>
-                <img class="imgPhrase" :src="$t('principal_page.image_url')" />
-              </div>
-              <div class="card-footer text-muted text-end">
-                {{ $t('principal_page.created_card_text') }}{{ year }}
-              </div>
-            </div>
+    <section id="presentation-main">
+      <div class="container">
+        <n-card hoverable style="padding: 0; overflow: hidden;" :title="$t('principal_page.first_card_tittle')"
+          :segmented="{
+            content: true,
+            footer: 'soft',
+          }">
+            <p><strong>{{ $t('principal_page.first_card_bold_text') }}</strong>
+              <br>
+              {{ $t('principal_page.first_card_text') }} <strong>{{ $t('principal_page.last_card_bold_text')
+                }}</strong>
+            </p>
+            <img class="imgPhrase" :src="$t('principal_page.image_url')" />
+          <div class="card-footer text-muted text-end">
+            {{ $t('principal_page.created_card_text') }}{{ year }}
           </div>
-        </section>
-        <section id="presentation-button-multimedia2">
-          <div class="container text-center second-multimedia">
-            <div class="row justify-content-center">
-              <div class="col">
-                <h2 class="middleTittle">{{ $t('principal_page.mini_game_text') }}</h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <iframe width="800" height="400" frameborder="0" :src="$t('principal_page.mini_game_url')"
-                  allowfullscreen title="Actividad número 2"></iframe>
-              </div>
-            </div>
-          </div>
-        </section>
+        </n-card>
       </div>
-    </div>
+    </section>
+    <section id="presentation-button-multimedia2">
+      <div class="text-center second-multimedia">
+        <div class="row justify-content-center">
+          <div class="col">
+            <h2 class="middleTittle">{{ $t('principal_page.mini_game_text') }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <iframe width="1000" height="600" frameborder="0" :src="$t('principal_page.mini_game_url')" allowfullscreen
+              title="Actividad número 2"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 
 </template>
@@ -74,17 +69,10 @@ body #presentation-main {
   margin-top: 20px;
 }
 
-/* Para el cuadro de card presentación */
-.container .card {
-  margin-left: 100px;
-  margin-right: 100px;
-
-}
-
 /* Decoración para el header del card presentacion */
-.container .card .card-header {
+:deep(.n-card__header) {
   background-color: #0F1F39;
-  color: #ffff;
+  color: white;
 }
 
 /* Decoración para el footer del card presentación */
@@ -109,11 +97,11 @@ body .carousel-inner img {
 
 body h1 {
   text-align: start;
-  font-family: 'Impact';
+  font-family: 'Arial';
 }
 
 body h2 {
-  font-family: 'Impact';
+  font-family: 'Arial';
 }
 
 .first-multimedia .row .col {
@@ -130,10 +118,6 @@ body h2 {
 
 .btn.btn-primary.content-button:hover {
   background-color: #2D82A6;
-}
-
-.square-box {
-  border: 1px solid;
 }
 
 #presentation-button-multimedia2 {

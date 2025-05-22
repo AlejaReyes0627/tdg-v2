@@ -1,4 +1,5 @@
 import Opcion1 from '@/components/DesarrolloWeb/Opcion1.vue';
+import Contact from '@/views/Contacto/Contact.vue';
 import DesarrolloWeb from '@/views/DesarrolloWeb/DesarrolloWeb.vue';
 import IngenieriaDeSoftware from '@/views/IngenieriaDeSoftware/IngenieriaDeSoftware.vue';
 import NotFound from '@/views/NotFound.vue';
@@ -26,8 +27,13 @@ const routes = [
         name: 'Opcion1',
         component: Opcion1
       }
-      
+
     ]
+  },
+  {
+    path: '/contact',
+    name: 'CONTACT',
+    component: Contact,
   },
   {
     path: "/:pathMatch(.*)*",

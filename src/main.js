@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 // En main.js o App.vue
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import naive from 'naive-ui'
 
 // Importa los iconos que necesites
 import { faGlobe, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +22,7 @@ library.add(faGlobe, faUser, faHome, faHeart, faGithub);
 
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(naive)
 app.use(router); 
 app.use(i18n);
 app.mount('#app');
