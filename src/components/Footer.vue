@@ -1,60 +1,41 @@
 <template>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h6 class="footerMsg">
-                        <strong>
-                            {{ $t('footer_page.footer_social_networks') }}
-                        </strong>
-                    </h6>
-                    <div class="row rowIcons">
-                        <div class="col">
-                            <a target="_blank" href="https://www.facebook.com/SoyUnibague/">
-                                <n-icon size="30">
-                                    <LogoFacebook />
-                                </n-icon>
-                            </a>
-                            <a target="_blank" href="https://twitter.com/unibagueoficial">
-                                <n-icon size="30">
-                                    <LogoTwitter />
-                                </n-icon>
-                            </a>
-                            <a target="_blank" href="https://www.youtube.com/user/universidadeibague">
-                                <n-icon size="30">
-                                    <LogoYoutube />
-                                </n-icon>
-                            </a>
-                            <a target="_blank" href="https://www.instagram.com/soyunibague/">
-                                <n-icon size="30">
-                                    <LogoInstagram />
-                                </n-icon>
-                            </a>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row text-sm-center">
-                        <h6><a type="button" class="btn btn-outline-light"> {{ $t('footer_page.footer_credits') }} </a>
-                        </h6>
-                    </div>
+  <footer class="footer-dark text-white py-5">
+    <div class="container text-center">
 
-                </div>
-            </div>
-            <br>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <p class="footerMsg">{{ $t('footer_page.footer_copyright') }}
-                    ©
-                </p>
-            </div>
-        </div>
+      <h5 class="mb-3 fw-bold">
+        {{ $t('footer_page.footer_social_networks') }}
+      </h5>
 
-    </footer>
+      <n-space justify="center" size="large">
+        <a href="https://www.facebook.com/SoyUnibague/" target="_blank">
+          <n-icon size="32" color="white">
+            <LogoFacebook />
+          </n-icon>
+        </a>
+        <a href="https://twitter.com/unibagueoficial" target="_blank">
+          <n-icon size="32" color="white">
+            <LogoTwitter />
+          </n-icon>
+        </a>
+        <a href="https://www.youtube.com/user/universidadeibague" target="_blank">
+          <n-icon size="32" color="white">
+            <LogoYoutube />
+          </n-icon>
+        </a>
+        <a href="https://www.instagram.com/soyunibague/" target="_blank">
+          <n-icon size="32" color="white">
+            <LogoInstagram />
+          </n-icon>
+        </a>
+      </n-space>
+
+      <div class="my-4 mx-auto separator"></div>
+
+      <small class="footer-copy">
+        {{ $t('footer_page.footer_copyright') }} ©
+      </small>
+    </div>
+  </footer>
 </template>
 
 <script lang="ts">
@@ -62,65 +43,39 @@ import { LogoInstagram, LogoFacebook, LogoTwitter, LogoYoutube } from '@vicons/i
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    components: {
-        LogoInstagram,
-        LogoFacebook,
-        LogoTwitter,
-        LogoYoutube
-    },
-    setup() {
-        return {
-            LogoInstagram,
-            LogoFacebook,
-            LogoTwitter,
-            LogoYoutube
-        }
-    }
+  components: {
+    LogoInstagram,
+    LogoFacebook,
+    LogoTwitter,
+    LogoYoutube
+  }
 })
 </script>
 
-<style lang="css" scoped>
-/* Todo el footer */
-footer {
-    background-color: #0D0D0D;
-    width: 100%;
+<style scoped>
+.footer-dark {
+  background-color: #0D0D0D;
 }
 
-/* Mensaje del footer  */
-.footerMsg {
-    color: #ffff;
-    text-align: center;
-    padding-top: 10px;
+.separator {
+  width: 25%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
 }
 
-.rowIcons a{
-    text-decoration: none !important; 
-    color: white;
+a {
+  color: white;
+  text-decoration: none;
 }
 
-/* Barra de progreso para cada item del footer */
-.col .progress {
-    height: 1px;
+a:hover {
+  opacity: 0.85;
 }
 
-/* Linea separadora entre los items y los derechos de autor */
-.col .progress .progress-bar {
-    width: 25%;
+.footer-copy {
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
-
-/* Lo que esté dentro del footer de la clase progress */
-footer .progress {
-    height: 1px;
-}
-
-/* Darle color a los íconos  */
-.container .row .col .material-icons {
-    color: #FFFF;
-    font-size: 48px;
-}
-
-/* Color del texto del footer */ 
-.footer-text {
-    color: rgb(156, 156, 156);
-} 
 </style>

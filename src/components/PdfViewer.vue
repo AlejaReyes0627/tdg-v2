@@ -1,59 +1,93 @@
 <template>
-  <div class="card border-secondary">
-    <div class="card-header">
-      <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group" role="group" aria-label="First group">
-          <div class="flex items-center btn-group-sm">
-            <button @click="zoomOut"
-              class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 btn btn-outline-dark btn-sm">
-              <i class="material-icons">zoom_out</i>
-            </button>
-            <span class="px-4 py-2">Zoom: {{ (scale * 100).toFixed(0) }}%</span>
-            <button @click="zoomIn" class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 btn btn-outline-dark btn-sm">
-              <i class="material-icons">zoom_in</i>
-            </button>
-          </div>
-        </div>
-        <div class="input-group btn-group-sm">
-          <div class="flex items-center">
-            <button @click="prevPage" :disabled="currentPage <= 1"
-              class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 disabled:bg-gray-400 btn btn-outline-dark btn-sm">
-              <i class="material-icons">arrow_back_ios</i>
-            </button>
-            <span class="text-lg px-4 py-2">
-              {{ $t('paginator.page') }} {{ currentPage }} {{ $t('paginator.of') }} {{ totalPages }}
-            </span>
-            <button @click="nextPage" :disabled="currentPage >= totalPages"
-              class="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 disabled:bg-gray-400 btn btn-outline-dark btn-sm">
-              <i class="material-icons">arrow_forward_ios</i>
-            </button>
-          </div>
-        </div>
-        <div class="btn-group btn-group-sm" role="group" aria-label="Download group">
-          <button @click="downloadPdf"
-            class="px-4 py-2 bg-green-500 rounded hover:bg-green-600 btn btn-outline-dark btn-sm">
-            <i class="material-icons">file_download</i>
-          </button>
-        </div>
-      </div>
-    </div>
+  <n-card class="pdf-viewer-card" bordered>
+    <template #header>
+      <n-space justify="space-between" align="center">
+        <n-space>
+          <n-button @click="zoomOut" size="small" type="info">
+            <template #icon>
+              <n-icon>
+                <ZoomOut16Regular />
+              </n-icon>
+            </template>
+            Zoom: {{ (scale * 100).toFixed(0) }}%
+          </n-button>
+          <n-button @click="zoomIn" size="small" type="info">
+            <template #icon>
+              <n-icon>
+                <ZoomIn16Regular />
+              </n-icon>
+            </template>
+          </n-button>
+        </n-space>
+        <n-space>
+          <n-button @click="prevPage" :disabled="currentPage <= 1" size="small" type="info">
+            <template #icon>
+              <n-icon>
+                <ArrowReply16Regular />
+              </n-icon>
+            </template>
+          </n-button>
+          <span>
+            {{ $t('paginator.page') }} {{ currentPage }} {{ $t('paginator.of') }} {{ totalPages }}
+          </span>
+          <n-button @click="nextPage" :disabled="currentPage >= totalPages" size="small" type="info">
+            <template #icon>
+              <n-icon>
+                <ArrowForward16Regular />
+              </n-icon>
+            </template>
+          </n-button>
+        </n-space>
+        <n-button @click="downloadPdf" size="small" type="info">
+          <template #icon>
+            <n-icon>
+              <ArrowDownload16Regular />
+            </n-icon>
+          </template>
+          {{ $t('paginator.download') }}
+        </n-button>
+      </n-space>
+    </template>
+
     <div class="flex justify-center mb-4 w-full">
       <canvas ref="pdfCanvas" class="border border-gray-300 mb-4 mx-auto"></canvas>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script>
 import * as pdfjsLib from 'pdfjs-dist';
-
-// Configurar el worker
+import {
+  NCard,
+  NSpace,
+  NButton,
+  NIcon
+} from 'naive-ui';
+import {
+  ZoomIn16Regular,
+  ZoomOut16Regular,
+  ArrowReply16Regular,
+  ArrowForward16Regular,
+  ArrowDownload16Regular
+} from '@vicons/fluent';
 
 export default {
+  name: 'PdfViewer',
+  components: {
+    NCard,
+    NSpace,
+    NButton,
+    NIcon,
+    ZoomIn16Regular,
+    ZoomOut16Regular,
+    ArrowReply16Regular,
+    ArrowForward16Regular,
+    ArrowDownload16Regular
+  },
   mounted() {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js'; // Ajusta la ruta si es necesario
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
     this.loadPdf();
   },
-  name: 'PdfViewer',
   props: {
     pdfPath: {
       type: String,
@@ -64,35 +98,32 @@ export default {
     return {
       totalPages: 0,
       currentPage: 1,
-      scale: 1, // Agregar escala para el zoom
+      scale: 1,
     };
   },
   methods: {
     async loadPdf() {
       try {
-        const pdf = await pdfjsLib.getDocument(this.pdfPath).promise;  // Cargar el PDF
-        this.totalPages = pdf.numPages;  // Obtener el número total de páginas
-        this.renderPage(this.currentPage, pdf, this.scale);  // Renderizar la página actual
+        const pdf = await pdfjsLib.getDocument(this.pdfPath).promise;
+        this.totalPages = pdf.numPages;
+        this.renderPage(this.currentPage, pdf, this.scale);
       } catch (error) {
         console.error('Error al cargar el PDF: ', error);
       }
     },
     async renderPage(pageNumber, pdf, scale) {
       try {
-        const page = await pdf.getPage(pageNumber);  // Obtener la página actual
-        const viewport = page.getViewport({ scale }); // Usar la escala para el viewport
-
-        const canvas = this.$refs.pdfCanvas;  // Obtener el canvas
+        const page = await pdf.getPage(pageNumber);
+        const viewport = page.getViewport({ scale });
+        const canvas = this.$refs.pdfCanvas;
         const context = canvas.getContext('2d');
         canvas.width = viewport.width;
         canvas.height = viewport.height;
-
         const renderContext = {
           canvasContext: context,
           viewport: viewport,
         };
-
-        await page.render(renderContext).promise;  // Renderizar la página
+        await page.render(renderContext).promise;
       } catch (error) {
         console.error('Error al renderizar la página: ', error);
       }
@@ -100,31 +131,31 @@ export default {
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
-        this.loadPdf();  // Renderizar la nueva página
+        this.loadPdf();
       }
     },
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
-        this.loadPdf();  // Renderizar la nueva página
+        this.loadPdf();
       }
     },
     zoomIn() {
-      this.scale += 0.1; // Aumentar la escala
-      this.loadPdf(); // Renderizar la página actual con la nueva escala
+      this.scale += 0.1;
+      this.loadPdf();
     },
     zoomOut() {
-      if (this.scale > 0.1) { // Evitar que la escala sea menor a 0.1
-        this.scale -= 0.1; // Disminuir la escala
+      if (this.scale > 0.1) {
+        this.scale -= 0.1;
       }
-      this.loadPdf(); // Renderizar la página actual con la nueva escala
+      this.loadPdf();
     },
     downloadPdf() {
-      const pdfPath = this.pdfPath; // Assuming this.pdfPath contains the URL
-      const filename = pdfPath.split('/').pop(); // Get the last segment of the URL
+      const pdfPath = this.pdfPath;
+      const filename = pdfPath.split('/').pop();
       const link = document.createElement('a');
-      link.href = this.pdfPath; // Usar la ruta del PDF
-      link.download = filename; // Nombre del archivo a descargar
+      link.href = this.pdfPath;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -134,12 +165,13 @@ export default {
 </script>
 
 <style scoped>
+.pdf-viewer-card {
+  margin: 20px 0;
+}
+
 canvas {
   display: block;
-  /* Asegúrate de que cada canvas esté en su propia línea */
   margin: 20px 0;
-  /* Espaciado entre las páginas */
   max-width: 100%;
-  /* Ajusta el ancho máximo del canvas */
 }
 </style>

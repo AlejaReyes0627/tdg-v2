@@ -91,26 +91,22 @@
   </script>
   
   <style scoped>
-  /* Todo el bloque para el card ingsoft */
   body #ingsoft-main {
     margin-bottom: 20px;
     margin-top: 20px;
   }
   
-  /* Para el cuadro de card ingsoft */
   .container .card {
     margin-left: 100px;
     margin-right: 100px;
   
   }
   
-  /* Decoración para el header del card ingsoft */
   .container .card .card-header {
     background-color: #0F1F39;
     color: #ffff;
   }
   
-  /* Decoración para el footer del card ingsoft */
   .container .card .card-footer {
     background-color: #ffffff;
     font-weight: bold;

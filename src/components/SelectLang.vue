@@ -1,38 +1,71 @@
 <template>
-  <div class="align-content-center">
-    <n-icon class="me-2 white-icon">
+  <n-space align="center" class="language-select">
+    <n-icon class="white-icon" size="20">
       <LanguageOutline />
     </n-icon>
-  </div>
-  <select class="form-select form-control pl-2" @change="changeLanguage($event.target.value)">
-    <option value="" disabled selected>{{ $t('select_language_text') }}</option>
-    <option value="es">{{ $t('language_1') }}</option>
-    <option value="en">{{ $t('language_2') }}</option>
-  </select>
+    <n-select
+      v-model:value="selectedLang"
+      :options="languageOptions"
+      placeholder="{$t('select_language_text')}"
+      size="small"
+      show-arrow
+      class="lang-select"
+      @update:value="changeLanguage"
+    />
+  </n-space>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { NIcon } from 'naive-ui';
-import { LanguageOutline } from '@vicons/ionicons5'; 
+import { NIcon, NSelect } from 'naive-ui';
+import { LanguageOutline } from '@vicons/ionicons5';
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
-const changeLanguage = (lang) => {
-  locale.value = lang;
+const languageOptions = [
+  { label: t('language_1'), value: 'es' },
+  { label: t('language_2'), value: 'en' }
+];
+
+const selectedLang = ref(locale.value);
+
+const changeLanguage = (val: string) => {
+  locale.value = val;
 };
-
 </script>
 
 <style scoped>
-@import 'bootstrap-icons/font/bootstrap-icons.css';
+.language-select {
+  color: white;
+  gap: 8px;
+  user-select: none;
+}
 
 .white-icon {
   color: white;
 }
 
-.language-button:hover {
-  cursor: pointer;
-  /* Cambia el cursor a puntero */
+.lang-select {
+  width: 120px;
+  color: white;
+}
+
+.lang-select .n-base-selection {
+  color: white;
+}
+
+.lang-select .n-base-selection--single {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.lang-select:hover .n-base-selection--single {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lang-select .n-base-selection-arrow {
+  color: white;
 }
 </style>

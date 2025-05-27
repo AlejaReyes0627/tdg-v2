@@ -9,7 +9,7 @@ const messages = {
     webDevelop_tittle: 'Web Development',
     softwareConfig_tittle: 'SCM',
     select_language_text: 'Select Language...',
-    contact_title:'Contact',
+    contact_title: 'Contact',
     language_1: 'Spanish',
     language_2: 'English',
     principal_page: {
@@ -17,14 +17,22 @@ const messages = {
       first_card_bold_text: '¡Welcome to the Open Digital Educational Resource on Management and Configuration of the Software and Web Development as part of Software Engineering!',
       first_card_text: 'This open digital educational resource is a valuable tool for anyone interested in Software Engineering. It will help you understand the Management and Software Configuration, as well as Web Development, in the context of a project successful software. Upon completion, you will be equipped with the knowledge and skills necessary to manage and configure the software effectively and develop robust and secure web applications.',
       last_card_bold_text: 'We hope you enjoy this course and learn a lot!',
+      temario_tittle: 'Content',
+      config_title: 'Software Engineering',
+      web_title: 'Web Development',
+      agile_title: 'Software Configuration Management',
+      config_text: 'You will explore fundamentals, methodologies, and key tools in software engineering.',
+      web_text: 'You will learn the design, structure, and operation of modern interactive websites.',
+      agile_text: 'Allows you to control and record changes in software systems for better quality and maintenance.',
       image_url: '/assets/images/phrasepresentation-en.png',
       created_card_text: 'Last edition in ',
       mini_game_text: '¿What will the content of this educational resource be about?',
       mini_game_url: 'https://es.educaplay.com/juego/15063522-.html',
     },
     isw_page: {
-      main_title:'Software Engineering',
-      main_body:'Training professionals to design and develop high-quality, reliable, and scalable software solutions for the challenges of the digital age.',
+      main_title: 'Software Engineering',
+      main_remember: 'Open Digital Educational Resource',
+      main_body: 'Training professionals to design and develop high-quality, reliable, and scalable software solutions for the challenges of the digital age.',
       first_card_tittle: '¿What is Software Engineering?',
       middle_card_text: '"Software engineering is a discipline of computer science that focuses on the development and maintenance of high-quality software systems and reliability. This discipline is based on a set of methods, tools and techniques for the construction and evolution of software that meets customer requirements, be easy to maintain and free from bugs. Software engineering involves the use of formal models and processes for the software development. These models and processes include the specification of requirements, the design of software architectures, the implementation of software, the verification and validation of the software and the management of the configuration of the software."',
       created_card_text: 'Last edition in ',
@@ -59,7 +67,8 @@ const messages = {
     },
     paginator: {
       page: 'Page',
-      of: 'of'
+      of: 'of',
+      download: 'Download'
     }
   },
   //ESPAÑOL
@@ -70,7 +79,7 @@ const messages = {
     webDevelop_tittle: 'Desarrollo Web',
     softwareConfig_tittle: 'GCS',
     select_language_text: 'Seleccione Idioma...',
-    contact_title:'Contacto',
+    contact_title: 'Contacto',
     language_1: 'Español',
     language_2: 'Inglés',
     principal_page: {
@@ -78,14 +87,22 @@ const messages = {
       first_card_bold_text: '¡Bienvenidos al Recurso Educativo Digital Abierto sobre Gestión y Configuración del Software y Desarrollo Web como parte de la Ingeniería de Software!',
       first_card_text: 'Este recurso educativo digital abierto es una herramienta valiosa para cualquier persona interesada en la Ingeniería de Software. Te ayudará a comprender la Gestión y Configuración del Software, así como el Desarrollo Web, en el contexto de un proyecto de software exitoso. Al finalizar, estarás equipado con los conocimientos y habilidades necesarias para gestionar y configurar el software de manera efectiva y desarrollar aplicaciones web robustas y seguras.',
       last_card_bold_text: '¡Esperamos que disfrutes de este curso y aprendas mucho!',
+      temario_tittle: 'Contenido',
+      config_title: 'Ingeniería de Software',
+      config_text: 'Explorarás fundamentos, metodologías y herramientas clave en ingeniería software.',
+      web_title: 'Desarrollo Web',
+      web_text: 'Aprenderás diseño, estructura y funcionamiento de sitios web interactivos modernos.',
+      agile_title: 'Gestión y Configuración del Software',
+      agile_text: 'Permite controlar y registrar cambios en sistemas de software para mejor calidad y mantenimiento.',
       image_url: '/assets/images/phrasepresentation.png',
       created_card_text: 'Última edición en ',
       mini_game_text: '¿De qué tratará el contenido de este recurso educativo?',
       mini_game_url: 'https://es.educaplay.com/juego/14775635-de_que_tratara_realmente_el_contenido.html',
     },
     isw_page: {
-      main_title:'Ingeniería de Software',
-      main_body:'Formando profesionales para diseñar y desarrollar soluciones de software de alta calidad, confiables y escalables para los desafíos de la era digital.',
+      main_title: 'Ingeniería de Software',
+      main_remember: 'Recurso Educativo Digital Abierto',
+      main_body: 'Formando profesionales para diseñar y desarrollar soluciones de software de alta calidad, confiables y escalables para los desafíos de la era digital.',
       first_card_tittle: '¿Qué es la Ingeniería de Software?',
       middle_card_text: '"La ingeniería de software es una disciplina de la informática que se enfoca en el desarrollo y mantenimiento de sistemas de software de alta calidad y confiabilidad. Esta disciplina se basa en un conjunto de métodos, herramientas y técnicas para la construcción y evolución de software que cumpla con los requisitos del cliente, sea fácil de mantener y esté libre de errores. La ingeniería de software implica el uso de modelos y procesos formales para el desarrollo de software. Estos modelos y procesos incluyen la especificación de requisitos, el diseño de arquitecturas de software, la implementación de software, la verificación y validación del software y la gestión de la configuración del software."',
       created_card_text: 'Última edición en ',
@@ -104,7 +121,16 @@ const messages = {
       swebok_list_9: 'Proceso de ingeniería de software',
       swebok_last_text: 'Cada área de conocimiento es tratada de manera detallada, incluyendo una descripción de los conceptos clave, los principios y prácticas relevantes, y las técnicas y herramientas comúnmente utilizadas en cada una."',
       swebok_url: '/assets/pdf/swebookv3es.pdf',
-      last_edited_in: 'Última edición en '
+      last_edited_in: 'Última edición en ',
+      methodologies_title: "Metodologías de Desarrollo de Software",
+      agile_title: "Metodología Ágil",
+      agile_description: "Enfoque iterativo que promueve la colaboración, flexibilidad y entrega rápida de software funcional.",
+      scrum_title: "Scrum",
+      scrum_description: "Framework ágil que organiza el trabajo en sprints con roles, eventos y artefactos bien definidos.",
+      waterfall_title:'Cascada',
+      waterfall_description:'Modelo de desarrollo lineal y estructurado, ideal para proyectos con requisitos claros y sin cambios frecuentes.',
+      methodology_tip_title: "Consejo",
+      methodology_tip_text: "La elección de la metodología depende del tipo de proyecto, equipo y organización. Muchas empresas combinan elementos de diferentes enfoques."
     },
     dev_web: {
       options: [
@@ -120,7 +146,8 @@ const messages = {
     },
     paginator: {
       page: 'Página',
-      of: 'de'
+      of: 'de',
+      download: 'Descargar'
     }
   },
 };

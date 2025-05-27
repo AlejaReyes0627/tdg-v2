@@ -1,154 +1,176 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">
-        <img src="/assets/images/unibague-4.0.png" width="200" height="40">
+  <n-layout-header class="navbar">
+    <div class="container-fluid d-flex align-items-center justify-between flex-wrap">
+
+      <router-link to="/" class="logo d-flex align-items-center">
+        <img src="/assets/images/unibague-4.0.png" alt="Logo" height="40" />
       </router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/isw">
-              <n-icon>
-                <HatGraduation20Regular />
-              </n-icon>
-              {{ $t('isw_tittle') }}
-            </router-link>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="webDevDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <n-icon>
-                <WebFilled />
-              </n-icon>
-              {{ $t('webDevelop_tittle') }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="webDevDropdown">
-              <!-- Hard-code the options since translation might not be working properly -->
-              <li>
-                <router-link class="dropdown-item" to="/opcion1">Opción 1</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/opcion2">Opción 2</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/opcion3">Opción 3</router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <n-icon>
-                <GitBranchOutline />
-              </n-icon>
-              {{ $t('softwareConfig_tittle') }}
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/contact">
-              <n-icon>
-                <ContactCardGroup20Regular />
-              </n-icon>
-              {{ $t('contact_title') }}
-            </router-link>
-          </li>
-        </ul>
-        <div class="d-flex align-items-center ms-3">
-          <SelectLang />
+
+      <n-space size="large" justify="start" class="nav-links">
+        <router-link to="/isw" class="nav-item">
+          <n-icon size="20">
+            <HatGraduation20Regular />
+          </n-icon>
+          {{ $t('isw_tittle') }}
+        </router-link>
+
+        <n-dropdown :options="webDevOptions" @select="handleWebDevSelect">
+          <div class="nav-item dropdown-toggle">
+            <n-icon size="20">
+              <WebFilled />
+            </n-icon>
+            {{ $t('webDevelop_tittle') }}
+          </div>
+        </n-dropdown>
+
+        <div class="nav-item">
+          <n-icon size="20">
+            <GitBranchOutline />
+          </n-icon>
+          {{ $t('softwareConfig_tittle') }}
         </div>
-      </div>
+      </n-space>
+
+      <n-space justify="end" align="center" size="large">
+        <router-link to="/contact" class="nav-item">
+          <n-icon size="20">
+            <ContactCardGroup20Regular />
+          </n-icon>
+          {{ $t('contact_title') }}
+        </router-link>
+        <SelectLang />
+      </n-space>
     </div>
-  </nav>
+  </n-layout-header>
 </template>
 
-<script>
-import SelectLang from './SelectLang.vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
 import { HatGraduation20Regular, ContactCardGroup20Regular } from '@vicons/fluent';
 import { WebFilled } from '@vicons/material';
 import { GitBranchOutline } from '@vicons/ionicons5';
 
+import SelectLang from './SelectLang.vue';
 
-import { NIcon } from 'naive-ui';
-import { useI18n } from 'vue-i18n';
-/* eslint-disable */
-export default {
-  name: 'NavBar',
+export default defineComponent({
   components: {
-    SelectLang,
-    NIcon,
     HatGraduation20Regular,
     ContactCardGroup20Regular,
     WebFilled,
-    GitBranchOutline
+    GitBranchOutline,
+    SelectLang
   },
   setup() {
+    const router = useRouter();
     const { t } = useI18n();
 
+    const webDevOptions = [
+      { label: 'Opción 1', key: 'opcion1' },
+      { label: 'Opción 2', key: 'opcion2' },
+      { label: 'Opción 3', key: 'opcion3' }
+    ];
+
+    const handleWebDevSelect = (key: string) => {
+      router.push(`/${key}`);
+    };
+
     return {
-      HatGraduation20Regular,
-      ContactCardGroup20Regular,
-      WebFilled,
-      GitBranchOutline,
-      t
+      t,
+      webDevOptions,
+      handleWebDevSelect
     };
   }
-};
+});
 </script>
 
 <style scoped>
-@import 'bootstrap-icons/font/bootstrap-icons.css';
-
-nav {
+.navbar {
   background-color: #0F1F39;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-link,
-.dropdown-item {
+  padding: 10px 20px;
   color: white;
-  text-decoration: none;
 }
 
-.nav-link:hover,
-.dropdown-item:hover {
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
   color: #cccccc;
 }
 
-.navbar-brand {
-  color: #ffff;
-  padding: 10px 20px;
-  font-family: 'Arial';
+.logo img {
+  max-height: 40px;
 }
 
-.navbar-brand:hover {
-  color: #ffff;
-  background-color: #14294b;
+.dropdown-toggle {
+  cursor: pointer;
 }
 
-/* Ensure dropdown styling works correctly */
-.dropdown-menu {
+.n-dropdown-menu {
   background-color: #0F1F39;
-  border: 1px solid #14294b;
-}
-
-.dropdown-item {
   color: white;
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
+.n-dropdown-option:hover {
   background-color: #14294b;
-  color: white;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.nav-links {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+a { text-decoration: none;}
+
+.n-space[justify='end'] {
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .container-fluid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    flex: 1 1 100%;
+    justify-content: center !important; 
+    margin-left: 0;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .n-space[justify='end'] {
+    flex: 1 1 100%;
+    justify-content: center !important;
+    gap: 20px;
+  }
+
+  .nav-item {
+    font-size: 1rem;
+  }
 }
 </style>
