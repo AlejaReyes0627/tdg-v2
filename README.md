@@ -5,7 +5,7 @@
   
   <p>
     <img src="https://img.shields.io/badge/Vue-3.4.0-4FC08D?style=for-the-badge&logo=vue.js"/>
-    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite"/>
+    <img src="https://img.shields.io/badge/Vite-3.4.0?logo=vite"/>
     <img src="https://img.shields.io/badge/Educativo-REDA-FF6B35?style=for-the-badge"/>
     <img src="https://img.shields.io/badge/Multiidioma-ES%20|%20EN-28A745?style=for-the-badge"/>
   </p>
