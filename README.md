@@ -5,7 +5,7 @@
   
   <p>
     <img src="https://img.shields.io/badge/Vue-3.4.0-4FC08D?style=for-the-badge&logo=vue.js"/>
-    <img src="https://img.shields.io/badge/Vite?style=for-the-badge&logo=vite"/>
+    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite"/>
     <img src="https://img.shields.io/badge/Educativo-REDA-FF6B35?style=for-the-badge"/>
     <img src="https://img.shields.io/badge/Multiidioma-ES%20|%20EN-28A745?style=for-the-badge"/>
   </p>
@@ -130,13 +130,12 @@ npm run dev-unsafe
 
 ### Metodología
 - **Aprendizaje Visual**: Diagramas y mapas conceptuales
-- **Interactividad**: Actividades prácticas con Educaplay
+- **Interactividad**: Actividades prácticas con Educaplay / Genially / Miro
 - **Accesibilidad**: Multiidioma y responsive design
 - **Modularidad**: Contenido organizado por temas
 
 ## 📊 Métricas del Proyecto
 
-![Líneas de Código](https://img.shields.io/tokei/lines/github/AlejaReyes0627/tdg-v2)
 ![Tamaño del Repositorio](https://img.shields.io/github/repo-size/AlejaReyes0627/tdg-v2)
 ![Último Commit](https://img.shields.io/github/last-commit/AlejaReyes0627/tdg-v2)
 
