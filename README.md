@@ -1,21 +1,15 @@
 <div align="center">
-  <img src="https://via.placeholder.com/1200x300/2196F3/FFFFFF?text=REDA+Ingeniería+de+Software+v2.0" alt="REDA Ingeniería de Software Banner" width="100%"/>
   
   # 🎓 Trabajo de Grado - Versión 2.0
   ### Recurso Educativo Digital Abierto (REDA) - Ingeniería de Software
   
   <p>
     <img src="https://img.shields.io/badge/Vue-3.4.0-4FC08D?style=for-the-badge&logo=vue.js"/>
-    <img src="https://img.shields.io/badge/Vuetify-3.4.0-1867C0?style=for-the-badge&logo=vuetify"/>
+    <img src="https://img.shields.io/badge/Vite?style=for-the-badge&logo=vite"/>
     <img src="https://img.shields.io/badge/Educativo-REDA-FF6B35?style=for-the-badge"/>
     <img src="https://img.shields.io/badge/Multiidioma-ES%20|%20EN-28A745?style=for-the-badge"/>
   </p>
   
-  <p>
-    <img src="https://img.shields.io/github/stars/usuario/repo?style=social"/>
-    <img src="https://img.shields.io/github/forks/usuario/repo?style=social"/>
-    <img src="https://img.shields.io/github/watchers/usuario/repo?style=social"/>
-  </p>
 </div>
 
 ---
@@ -24,8 +18,8 @@
 
 | Versión | Tecnología | Características | Estado |
 |---------|------------|-----------------|--------|
-| **v1.0** | HTML + jQuery + Bootstrap | Páginas duplicadas ES/EN, iframes educativos | ✅ Completado |
-| **v2.0** | Vue 3 + Vuetify | SPA multiidioma, componentes reutilizables | 🚧 En desarrollo |
+| **v1.0** | HTML + CSS + JavaScript + Bootstrap | Páginas duplicadas ES/EN, iframes educativos | ✅ Completado |
+| **v2.0** | Vue 3 + Vite + NaiveUI | SPA multiidioma, componentes reutilizables | 🚧 En desarrollo |
 
 ## 📚 Contenido Educativo
 
@@ -64,12 +58,10 @@
 ## 🛠️ Tecnologías Integradas
 
 ### Frontend Framework
-\`\`\`bash
-Vue 3 + Composition API
-Vuetify 3 (Material Design)
-Vue Router 4 (SPA Navigation)
-Vue I18n (Internacionalización)
-\`\`\`
+- **Vue 3** + Composition API
+- **Vuetify 3** (Material Design)
+- **Vue Router 4** (SPA Navigation)
+- **Vue I18n** (Internacionalización)
 
 ### Herramientas Educativas
 - **📱 Educaplay**: Actividades interactivas
@@ -79,12 +71,12 @@ Vue I18n (Internacionalización)
 
 ## ✨ Mejoras v2.0
 
-| Característica | v1.0 (HTML) | v2.0 (Vue) |
+| Característica | v1.0 (HTML) | v2.0 (Vue3) |
 |---|---|---|
 | **Multiidioma** | Páginas duplicadas | Sistema i18n integrado |
 | **Navegación** | Enlaces estáticos | SPA con Vue Router |
 | **Componentes** | Código duplicado | Componentes reutilizables |
-| **Responsive** | Bootstrap básico | Vuetify + Grid system |
+| **Responsive** | Bootstrap básico | NaiveUI |
 | **Mantenimiento** | Difícil | Modular y escalable |
 
 ## 🎨 Capturas de Pantalla
@@ -97,46 +89,40 @@ Vue I18n (Internacionalización)
 ## 🚀 Instalación y Uso
 
 ### Prerrequisitos
-\`\`\`bash
-Node.js >= 16.0.0
-npm >= 8.0.0
-\`\`\`
+- **Node.js** >= 16.0.0
+- **npm** >= 8.0.0 
 
 ### Instalación
-\`\`\`bash
 # Clonar repositorio
-git clone https://github.com/usuario/trabajo-grado-v2.git
+git clone https://github.com/AlejaReyes0627/tdg-v2.git
 
 # Instalar dependencias
-cd trabajo-grado-v2
+cd tdg-v2
 npm install
 
-# Ejecutar en desarrollo
-npm run serve
+# Ejecutar en desarrollo (con Vite)
+npm run dev
 
 # Construir para producción
 npm run build
-\`\`\`
 
 ### Configuración SSL (Desarrollo)
-\`\`\`bash
 # Para APIs con certificados inválidos
-npm run serve-unsafe
-\`\`\`
+npm run dev-unsafe
 
 ## 🌐 Estructura del Proyecto
 
-\`\`\`
-src/
-├── components/           # Componentes reutilizables
-│   ├── educational/     # Componentes educativos
-│   ├── interactive/     # Iframes y actividades
-│   └── ui/             # Componentes UI
-├── views/              # Páginas principales
-├── locales/            # Archivos de traducción
-├── router/             # Configuración de rutas
-└── plugins/            # Configuración Vuetify/i18n
-\`\`\`
+### 📁 **src/**
+- **📁 components/** - Componentes reutilizables
+  - **📁 DesarrolloWeb/** - Componente auxiliar para el módulo de desarrollo web
+- **📁 views/** - Páginas principales de la aplicación
+  - **📁 Contacto/** - Componente para el módulo de Contacto/Créditos
+  - **📁 DesarrolloWeb/** - Componente para el módulo de desarrollo web
+  - **📁 IngenieriaDeSoftware/** - Componente para el módulo de Ingenieria de Softwar
+- **📁 router/** - Configuración de rutas Vue Router
+
+### 📁 **public/**
+- **📁 assets/** - Recursos estáticos (imágenes, estilos)
 
 ## 🎓 Objetivos Académicos
 
@@ -150,36 +136,20 @@ src/
 
 ## 📊 Métricas del Proyecto
 
-![Líneas de Código](https://img.shields.io/tokei/lines/github/usuario/trabajo-grado-v2)
-![Tamaño del Repositorio](https://img.shields.io/github/repo-size/usuario/trabajo-grado-v2)
-![Último Commit](https://img.shields.io/github/last-commit/usuario/trabajo-grado-v2)
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+![Líneas de Código](https://img.shields.io/tokei/lines/github/AlejaReyes0627/tdg-v2)
+![Tamaño del Repositorio](https://img.shields.io/github/repo-size/AlejaReyes0627/tdg-v2)
+![Último Commit](https://img.shields.io/github/last-commit/AlejaReyes0627/tdg-v2)
 
 ## 👨‍🎓 Autor
 
 **Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-- Email: tu.email@universidad.edu
+- GitHub: [@AlejaReyes0627](https://github.com/AlejaReyes0627)
+- LinkedIn: [Maria Alejandra Reyes Gonzalez](https://www.linkedin.com/in/maria-alejandra-reyes-gonzalez/)
+- Email: aleja.reyes0627@hotmail.com
 
 ---
 
 <div align="center">
   <p><strong>🎯 Transformando la educación en Ingeniería de Software</strong></p>
   <p>De HTML estático a Vue interactivo</p>
-  
-  ⭐ Si este proyecto te ayuda, ¡dale una estrella!
 </div>
