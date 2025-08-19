@@ -1,3 +1,4 @@
+import { Leanpub } from '@vicons/fa';
 import { createI18n } from 'vue-i18n';
 
 const messages = {
@@ -52,6 +53,27 @@ const messages = {
       swebok_last_text: 'Each area of knowledge is covered in detail, including a description of key concepts, relevant principles and practices, and the techniques and tools commonly used in each one."',
       swebok_url: '/assets/pdf/swebokv3.pdf',
       last_edited_in: 'Last edition in ',
+      methodologies_title: "Software Development Methodologies",
+      agile_title: "Agile Methodology",
+      agile_description: "An iterative approach that promotes collaboration, flexibility, and rapid delivery of functional software.",
+      tag1: "Flexible",
+      tag2: "Iterative", 
+      tag3: "Collaborative",
+      scrum_title: "Scrum",
+      scrum_description: "An agile framework that organizes work into sprints with well-defined roles, events, and artifacts.",
+      tag4: "Sprints",
+      tag5: "Roles",
+      tag6: "Ceremonies",
+      waterfall_title: "Waterfall",
+      waterfall_description: "A linear and structured development model, ideal for projects with clear requirements and minimal changes.",
+      methodology_tip_title: "Tip",
+      methodology_tip_text: "The choice of methodology depends on the type of project, team, and organization. Many companies combine elements from different approaches.",
+      devops_title: "DevOps",
+      devops_description: "A modern practice that integrates development and operations to automate processes, enhance collaboration, and accelerate continuous software delivery.",
+      kanban_title: "Kanban",
+      kanban_description: "A visual method that manages workflow using boards and cards, optimizing efficiency and reducing delivery time.",
+      lean_title: "Lean Software Development",
+      lean_description: "An approach focused on eliminating waste, optimizing resources, and maximizing customer value.",
     },
     dev_web: {
       options: [
@@ -127,10 +149,16 @@ const messages = {
       agile_description: "Enfoque iterativo que promueve la colaboración, flexibilidad y entrega rápida de software funcional.",
       scrum_title: "Scrum",
       scrum_description: "Framework ágil que organiza el trabajo en sprints con roles, eventos y artefactos bien definidos.",
-      waterfall_title:'Cascada',
-      waterfall_description:'Modelo de desarrollo lineal y estructurado, ideal para proyectos con requisitos claros y sin cambios frecuentes.',
+      waterfall_title: 'Cascada',
+      waterfall_description: 'Modelo de desarrollo lineal y estructurado, ideal para proyectos con requisitos claros y sin cambios frecuentes.',
       methodology_tip_title: "Consejo",
-      methodology_tip_text: "La elección de la metodología depende del tipo de proyecto, equipo y organización. Muchas empresas combinan elementos de diferentes enfoques."
+      methodology_tip_text: "La elección de la metodología depende del tipo de proyecto, equipo y organización. Muchas empresas combinan elementos de diferentes enfoques.",
+      devops_title: "DevOps",
+      devops_description: "Práctica moderna que integra desarrollo y operaciones para automatizar procesos, mejorar la colaboración y acelerar la entrega continua de software.",
+      kanban_title: "Kanban",
+      kanban_description: "Método visual que gestiona el flujo de trabajo mediante tableros y tarjetas, optimizando la eficiencia y reduciendo el tiempo de entrega.",
+      lean_title: "Lean Software Development",
+      lean_description: "Enfoque que busca eliminar desperdicios, optimizar recursos y maximizar el valor entregado al cliente.",
     },
     dev_web: {
       options: [
