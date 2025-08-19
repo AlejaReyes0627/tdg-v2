@@ -1,11 +1,13 @@
 <div align="center">
   
+<img src="https://via.placeholder.com/1200x300/2196F3/FFFFFF?text=REDA+Ingeniería+de+Software+v2.0" alt="REDA Ingeniería de Software Banner" width="100%"/>
+
   # 🎓 Trabajo de Grado - Versión 2.0
   ### Recurso Educativo Digital Abierto (REDA) - Ingeniería de Software
   
   <p>
-    <img src="https://img.shields.io/badge/Vue-3.4.0-4FC08D?style=for-the-badge&logo=vue.js"/>
-    <img src="https://img.shields.io/badge/Vite-3.4.0?logo=vite"/>
+    <img src="https://img.shields.io/badge/Vue-3.5.14-4FC08D?style=for-the-badge&logo=vue.js"/>
+    <img src="https://img.shields.io/badge/Vite-5.0.0-646CFF?style=for-the-badge&logo=vite"/>
     <img src="https://img.shields.io/badge/Educativo-REDA-FF6B35?style=for-the-badge"/>
     <img src="https://img.shields.io/badge/Multiidioma-ES%20|%20EN-28A745?style=for-the-badge"/>
   </p>
