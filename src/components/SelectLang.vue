@@ -68,4 +68,23 @@ const changeLanguage = (val: string) => {
 .lang-select .n-base-selection-arrow {
   color: white;
 }
+
+::v-deep(.n-base-selection) {
+  border: 1px solid #00acdf !important; 
+  
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+::v-deep(.n-base-selection:hover) {
+  border-color: #00acdf !important; 
+  
+}
+
+::v-deep(.n-base-selection--active) {
+  border-color: #00acdf !important;
+  box-shadow: 0 0 4px #3ba0ff66; 
+  
+}
+
 </style>

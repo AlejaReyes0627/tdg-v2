@@ -1,428 +1,642 @@
 <template>
-  <div class="hero-wrapper">
-    <div class="overlay"></div>
-    <n-space vertical align="center" class="hero-content">
-      <n-space>
-        <n-tag round :bordered="false" type="info">
-          {{ $t('isw_page.main_remember') }}
-        </n-tag>
-      </n-space>
-      <h1 style="font-size: 40px;">{{ $t('isw_page.main_title') }}</h1>
-      <p style="max-width: 600px; text-align: center;">
-        {{ $t('isw_page.main_body') }}
-      </p>
-    </n-space>
-  </div>
-  <div class="container">
-    <section id="ingsoft-main">
-      <n-card hoverable style="padding: 0; overflow: hidden;">
-        <n-grid cols="12" x-gap="0" responsive="screen">
-          <n-gi :span="4">
-            <div style="height: 100%; width: 100%; overflow: hidden;">
-              <n-image src="/assets/images/ingenieriaSoftware.jpg" alt="Ingeniería de Software"
-                style="width: 100%; height: 100%; max-height: 250px; object-fit: contain;" />
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-bg">
+      <div class="overlay"></div>
+      <div class="hero-center">
+        <div class="container hero-content">
+          <n-tag round :bordered="false" type="info" class="hero-tag" data-aos="fade-down">
+            {{ $t('isw_page.main_remember') }}
+          </n-tag>
+          <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+            {{ $t('isw_page.main_title') }}
+          </h1>
+          <p class="hero-text" data-aos="fade-up" data-aos-delay="200">
+            {{ $t('isw_page.main_body') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUCCIÓN -->
+  <section class="intro-section">
+    <div class="container">
+      <n-card class="glass-card intro-card" hoverable data-aos="zoom-in">
+        <n-grid :cols="12" x-gap="32" y-gap="16">
+          <n-gi :span="5">
+            <div class="intro-image">
+              <n-image src="/assets/images/ingenieriaSoftware.jpg" alt="Ingeniería de Software" />
             </div>
           </n-gi>
-          <n-gi :span="8">
-            <div style="padding: 1.5rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">
-                {{ $t('isw_page.first_card_tittle') }}
-              </h3>
-              <p style="margin-bottom: 1.5rem;">
-                {{ $t('isw_page.middle_card_text') }}
-              </p>
-              <div style="text-align: right; color: #999;">
-                <small>{{ $t('isw_page.created_card_text') }} {{ year }}</small>
-              </div>
+          <n-gi :span="7">
+            <div class="intro-body">
+              <h3>{{ $t('isw_page.first_card_tittle') }}</h3>
+              <p>{{ $t('isw_page.middle_card_text') }}</p>
+              <n-divider class="soft-divider" />
+
             </div>
           </n-gi>
         </n-grid>
+        <div class="principles-section" data-aos="fade-up">
+          <n-grid :cols="gridCols" x-gap="24" y-gap="24">
+            <n-gi v-for="(card, index) in principles" :key="index">
+              <n-card class="glass-card principle-card" hoverable>
+                <div class="principle-icon">
+                  <n-icon size="40" :component="card.icon" />
+                </div>
+                <h4 class="principle-title">{{ card.title }}</h4>
+                <p class="principle-text">{{ card.text }}</p>
+              </n-card>
+            </n-gi>
+          </n-grid>
+        </div>
+        <div class="footer-date">
+          <n-icon :component="CalendarOutline" size="18" />
+          <span>{{ $t('isw_page.created_card_text') }} {{ year }}</span>
+        </div>
       </n-card>
-    </section>
-    <section id="presentation-button-multimedia2">
-      <div class="text-center second-multimedia">
-        <div class="row justify-content-center">
-          <div class="col">
-            <h2 class="middleTittle">{{ $t('isw_page.mini_game_text') }}</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <iframe width="795" height="690" frameborder="0" :src="$t('isw_page.mini_game_url')" allowfullscreen
-              title="Actividad número 3"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="ingsoft-main">
-      <div class="card">
-        <div class="card-header">
-          <h1>{{ $t('isw_page.swebok_tittle') }}</h1>
-        </div>
-        <div class="card-body">
-          <p>{{ $t('isw_page.swebok_first_text') }}</p>
-          <n-thing>
-            {{ $t('isw_page.swebok_list_1') }}<br>
-            {{ $t('isw_page.swebok_list_2') }}<br>
-            {{ $t('isw_page.swebok_list_3') }}<br>
-            {{ $t('isw_page.swebok_list_4') }}<br>
-            {{ $t('isw_page.swebok_list_5') }}<br>
-            {{ $t('isw_page.swebok_list_6') }}<br>
-            {{ $t('isw_page.swebok_list_7') }}<br>
-            {{ $t('isw_page.swebok_list_8') }}<br>
-            {{ $t('isw_page.swebok_list_9') }}<br>
-          </n-thing>
-          <p>{{ $t('isw_page.swebok_last_text') }}
-          </p>
-          <PdfViewer :pdfPath="$t('isw_page.swebok_url')" class="justify-center items-center" />
-        </div>
-        <div class="card-footer text-muted text-end">
-          {{ $t('isw_page.last_edited_in') }}{{ year }}
-        </div>
-      </div>
-    </section>
 
+    </div>
 
-      <section id="metodologias-section" style="margin: 2rem 0;">
-    <n-card>
-      <template #header>
-        <h2 style="text-align: center; margin: 0;">
-          {{ $t('isw_page.methodologies_title') }}
-        </h2>
-      </template>
-
-      <n-grid cols="1 s:2 m:3" responsive="screen" x-gap="16" y-gap="16">
-        <!-- Metodología Ágil -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M12,4V2C13.30,2.13 14.55,2.45 15.68,2.94L14.81,4.54C14.00,4.24 13.11,4.07 12,4M4,12C4,13.11 4.24,14.00 4.54,14.81L2.94,15.68C2.45,14.55 2.13,13.30 2,12H4M15.46,4.54L16.94,2.94C18.22,3.86 19.35,5.00 20.27,6.29L18.68,7.76C17.96,6.78 17.05,5.87 15.46,4.54M20,12H22C21.87,13.30 21.55,14.55 21.06,15.68L19.46,14.81C19.76,14.00 19.93,13.11 20,12M17.24,18.68L18.76,20.27C17.5,21.13 16.06,21.74 14.50,22.05L14.07,20.14C15.17,19.92 16.21,19.42 17.24,18.68M4.54,9.46L2.94,8.06C3.86,6.78 5.00,5.65 6.29,4.73L7.76,6.32C6.78,7.04 5.87,7.95 4.54,9.46M12,20V22C10.70,21.87 9.45,21.55 8.32,21.06L9.19,19.46C10.00,19.76 10.89,19.93 12,20M6.76,17.24L5.24,18.76C4.38,17.5 3.77,16.06 3.46,14.50L5.37,14.07C5.58,15.17 6.08,16.21 6.76,17.24M9.46,19.46L8.06,21.06C6.78,20.14 5.65,19.00 4.73,17.71L6.32,16.24C7.04,17.22 7.95,18.13 9.46,19.46M14.07,3.86L14.50,1.95C16.06,2.26 17.5,2.87 18.76,3.73L17.24,5.32C16.21,4.58 15.17,4.08 14.07,3.86Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.agile_title') }}</span>
-                <n-tag type="info" size="small">Popular</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.agile_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="success">{{ $t('isw_page.tag1') }}</n-tag>
-                <n-tag size="tiny" type="info">{{ $t('isw_page.tag2') }}</n-tag>
-                <n-tag size="tiny" type="warning">{{ $t('isw_page.tag3') }}</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-
-        <!-- Scrum -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.scrum_title') }}</span>
-                <n-tag type="success" size="small">Ágil</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.scrum_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="primary">{{ $t('isw_page.tag4') }}</n-tag>
-                <n-tag size="tiny" type="success">{{ $t('isw_page.tag5') }}</n-tag>
-                <n-tag size="tiny" type="info">{{ $t('isw_page.tag6') }}</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-
-        <!-- Waterfall -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M2,3V6H8V3H2M2,7V10H8V7H2M2,11V14H8V11H2M10,3V6H16V3H10M10,7V10H16V7H10M10,11V14H16V11H10M18,3V6H24V3H18M18,7V10H24V7H18M18,11V14H24V11H18M2,15V18H8V15H2M10,15V18H16V15H10M18,15V18H24V15H18M2,19V22H8V19H2M10,19V22H16V19H10M18,19V22H24V19H18Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.waterfall_title') }}</span>
-                <n-tag type="default" size="small">Tradicional</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.waterfall_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="default">Secuencial</n-tag>
-                <n-tag size="tiny" type="warning">Documentado</n-tag>
-                <n-tag size="tiny" type="info">Fases</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-
-        <!-- DevOps -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M18.6,6.62C21.58,9.6 21.58,14.4 18.6,17.38C17.72,18.26 16.66,18.86 15.54,19.16L14.44,17.73C15.27,17.5 16.04,17.05 16.67,16.42C18.78,14.31 18.78,10.69 16.67,8.58C14.56,6.47 10.94,6.47 8.83,8.58C7.72,9.69 7.72,11.31 8.83,12.42L10.76,14.35L12.18,12.93L10.25,11C9.64,10.39 9.64,9.61 10.25,9C10.86,8.39 11.64,8.39 12.25,9L14.18,10.93L15.6,9.51L13.67,7.58C12.56,6.47 10.94,6.47 9.83,7.58C6.85,10.56 6.85,15.44 9.83,18.42C10.71,19.3 11.77,19.9 12.89,20.2L14,18.77C13.16,18.54 12.39,18.09 11.76,17.46C9.65,15.35 9.65,11.73 11.76,9.62C13.87,7.51 17.49,7.51 19.6,9.62C20.71,10.73 20.71,12.35 19.6,13.46L17.67,15.39L16.25,13.97L18.18,12.04C18.79,11.43 18.79,10.65 18.18,10.04C17.57,9.43 16.79,9.43 16.18,10.04L14.25,11.97L12.83,10.55L14.76,8.62C15.87,7.51 17.49,7.51 18.6,8.62Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.devops_title') }}</span>
-                <n-tag type="error" size="small">Moderno</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.devops_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="error">CI/CD</n-tag>
-                <n-tag size="tiny" type="success">Automatización</n-tag>
-                <n-tag size="tiny" type="warning">Colaboración</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-
-        <!-- Kanban -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M3,3V21H21V3H3M19,19H5V5H19V19M7,7V17H9V7H7M11,7V13H13V7H11M15,7V15H17V7H15Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.kanban_title') }}</span>
-                <n-tag type="primary" size="small">Visual</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.kanban_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="primary">Tablero</n-tag>
-                <n-tag size="tiny" type="info">Flujo</n-tag>
-                <n-tag size="tiny" type="success">Límites</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-
-        <!-- Lean -->
-        <n-gi>
-          <n-card hoverable size="small">
-            <template #cover>
-              <div
-                style="height: 120px; background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); display: flex; align-items: center; justify-content: center;">
-                <n-icon size="48" color="white">
-                  <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                      d="M4,15V9H12L11.5,7.5H4V6.5H12.5L13.5,9H20V10H14L13.5,8.5H5.5V14.5H13.5L14,16H20V17H13.5L12.5,14.5H5.5V16H12L11.5,17.5H4V15M16,12V18L20,15L16,12Z" />
-                  </svg>
-                </n-icon>
-              </div>
-            </template>
-            <template #header>
-              <n-space justify="space-between" align="center">
-                <span style="font-weight: bold;">{{ $t('isw_page.lean_title') }}</span>
-                <n-tag type="warning" size="small">Eficiente</n-tag>
-              </n-space>
-            </template>
-            <p style="margin: 0; font-size: 14px; line-height: 1.4;">
-              {{ $t('isw_page.lean_description') }}
-            </p>
-            <template #footer>
-              <n-space>
-                <n-tag size="tiny" type="warning">Valor</n-tag>
-                <n-tag size="tiny" type="error">Desperdicio</n-tag>
-                <n-tag size="tiny" type="info">Mejora</n-tag>
-              </n-space>
-            </template>
-          </n-card>
-        </n-gi>
-      </n-grid>
-
-      <!-- Comparación rápida -->
-      <template #footer>
-        <n-alert type="info" style="margin-top: 1rem;">
-          <template #icon>
-            <n-icon>
-              <svg viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" />
-              </svg>
-            </n-icon>
-          </template>
-          <strong>{{ $t('isw_page.methodology_tip_title') }}:</strong>
-          {{ $t('isw_page.methodology_tip_text') }}
-        </n-alert>
-      </template>
-    </n-card>
   </section>
 
+  <!-- MINI JUEGO -->
+  <section class="game-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">
+        <n-icon :component="GameControllerOutline" class="title-icon" />
+        {{ $t('isw_page.mini_game_text') }}
+      </h2>
+      <div class="game-wrapper" data-aos="flip-left" data-aos-delay="200">
+        <iframe :src="$t('isw_page.mini_game_url')" class="game-iframe" frameborder="0" allowfullscreen
+          title="Mini Juego Interactivo" sandbox="allow-scripts allow-popups allow-forms"></iframe>
+      </div>
+    </div>
+  </section>
 
-  </div>
+  <!-- SWEBOK - TEMARIO OFICIAL -->
+  <section class="swebok-section">
+    <div class="container">
+      <n-card class="glass-card swebok-card" hoverable data-aos="fade-up">
+        <template #header>
+          <h2 class="section-title">
+            <n-icon :component="BookOutline" class="title-icon" />
+            {{ $t('isw_page.swebok_tittle') }}
+          </h2>
+        </template>
+
+        <n-collapse accordion class="swebok-collapse">
+          <n-collapse-item v-for="(item, index) in swebokItems" :key="index" :title="item.title"
+            :name="`item-${index}`">
+            <p class="collapse-text">{{ item.text }}</p>
+          </n-collapse-item>
+        </n-collapse>
+
+        <n-divider class="soft-divider" />
+
+        <div class="pdf-container">
+          <PdfViewer :pdfPath="$t('isw_page.swebok_url')" />
+        </div>
+
+        <template #footer>
+          <small class="footer-text">
+            {{ $t('isw_page.last_edited_in') }} {{ year }}
+          </small>
+        </template>
+      </n-card>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍAS - TEMARIO INTERACTIVO -->
+  <section class="methodologies-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Metodologías de Desarrollo</h2>
+
+      <n-tabs type="line" animated class="method-tabs" data-aos="fade-up" data-aos-delay="100">
+        <n-tab-pane v-for="method in methodologies" :key="method.key" :name="method.key" :tab="method.title">
+          <n-card class="method-card glass-card" hoverable>
+            <n-grid :cols="12" x-gap="32" y-gap="16">
+              <n-gi :span="4">
+                <div :class="`method-icon ${method.key}`">
+                  <n-icon size="60" color="white">
+                    <component :is="method.icon" />
+                  </n-icon>
+                </div>
+              </n-gi>
+              <n-gi :span="8">
+                <div class="method-body">
+                  <h3>{{ method.title }}</h3>
+                  <p>{{ method.description }}</p>
+                  <n-space class="method-tags" :size="8">
+                    <n-tag v-for="tag in method.tags" :key="tag.label" :type="tag.type" size="small" round>
+                      {{ tag.label }}
+                    </n-tag>
+                  </n-space>
+                </div>
+              </n-gi>
+            </n-grid>
+          </n-card>
+        </n-tab-pane>
+      </n-tabs>
+    </div>
+  </section>
 </template>
 
-<script>
-/* eslint-disable */
-import PdfViewer from '@/components/PdfViewer.vue';
-import { NSpace, NButton, NCard, NGrid, NGi, NImage } from 'naive-ui'
-export default {
-  name: 'ISW',
-  components: {
-    PdfViewer
-  },
-  data() {
-    return {
-      year: new Date().getFullYear(),
-    }
-  },
-  methods: {
-  }
+<script setup lang="ts">
+import { ref, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { defineAsyncComponent } from 'vue'
+
+import {
+  CalendarOutline,
+  GameControllerOutline,
+  BookOutline,
+  RocketOutline,
+  ConstructOutline,
+  ShieldCheckmarkOutline,
+  GitBranchOutline
+} from '@vicons/ionicons5'
+
+import PdfViewer from '@/components/PdfViewer.vue'
+
+// Iconos personalizados (puedes reemplazar con los tuyos)
+const icons = {
+  agile: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoIonic)),
+  scrum: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoBuffer)),
+  waterfall: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoOctocat)),
+  devops: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoDocker)),
+  kanban: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoTableau)),
+  lean: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoGithub))
 }
+
+const { t } = useI18n()
+const year = ref(new Date().getFullYear())
+const gridCols = ref(3)
+
+// SWEBOK Items
+const swebokItems = [
+  { title: t('isw_page.swebok_list_1'), text: t('isw_page.swebok_list_1') },
+  { title: t('isw_page.swebok_list_2'), text: t('isw_page.swebok_list_2') },
+  { title: t('isw_page.swebok_list_3'), text: t('isw_page.swebok_list_3') },
+  { title: t('isw_page.swebok_list_4'), text: t('isw_page.swebok_list_4') },
+  { title: t('isw_page.swebok_list_5'), text: t('isw_page.swebok_list_5') },
+  { title: t('isw_page.swebok_list_6'), text: t('isw_page.swebok_list_6') },
+  { title: t('isw_page.swebok_list_7'), text: t('isw_page.swebok_list_7') },
+  { title: t('isw_page.swebok_list_8'), text: t('isw_page.swebok_list_8') },
+  { title: t('isw_page.swebok_list_9'), text: t('isw_page.swebok_list_9') }
+]
+
+const principles = [
+  {
+    icon: RocketOutline,
+    title: 'Innovación Continua',
+    text: 'La ingeniería de software impulsa el progreso mediante soluciones tecnológicas creativas y eficientes.'
+  },
+  {
+    icon: ConstructOutline,
+    title: 'Calidad y Mantenimiento',
+    text: 'El software debe ser confiable, fácil de mantener y cumplir con los estándares de calidad definidos.'
+  },
+  {
+    icon: ShieldCheckmarkOutline,
+    title: 'Seguridad y Confiabilidad',
+    text: 'Todo sistema debe garantizar la integridad y privacidad de los datos, minimizando riesgos.'
+  },
+  {
+    icon: GitBranchOutline,
+    title: 'Trabajo Colaborativo',
+    text: 'El desarrollo de software exitoso se logra con equipos multidisciplinarios y metodologías ágiles.'
+  }
+]
+
+// Metodologías
+const methodologies = [
+  {
+    key: 'agile',
+    title: t('isw_page.agile_title'),
+    description: t('isw_page.agile_description'),
+    icon: icons.agile,
+    tags: [
+      { label: t('isw_page.tag1'), type: 'success' },
+      { label: t('isw_page.tag2'), type: 'info' },
+      { label: t('isw_page.tag3'), type: 'warning' }
+    ]
+  },
+  {
+    key: 'scrum',
+    title: t('isw_page.scrum_title'),
+    description: t('isw_page.scrum_description'),
+    icon: icons.scrum,
+    tags: [
+      { label: t('isw_page.tag4'), type: 'primary' },
+      { label: t('isw_page.tag5'), type: 'success' },
+      { label: t('isw_page.tag6'), type: 'info' }
+    ]
+  },
+  {
+    key: 'waterfall',
+    title: t('isw_page.waterfall_title'),
+    description: t('isw_page.waterfall_description'),
+    icon: icons.waterfall,
+    tags: [
+      { label: 'Secuencial', type: 'default' },
+      { label: 'Documentado', type: 'warning' },
+      { label: 'Fases', type: 'info' }
+    ]
+  },
+  {
+    key: 'devops',
+    title: t('isw_page.devops_title'),
+    description: t('isw_page.devops_description'),
+    icon: icons.devops,
+    tags: [
+      { label: 'CI/CD', type: 'error' },
+      { label: 'Automatización', type: 'success' },
+      { label: 'Colaboración', type: 'warning' }
+    ]
+  },
+  {
+    key: 'kanban',
+    title: t('isw_page.kanban_title'),
+    description: t('isw_page.kanban_description'),
+    icon: icons.kanban,
+    tags: [
+      { label: 'Tablero', type: 'primary' },
+      { label: 'Flujo', type: 'info' },
+      { label: 'Límites', type: 'success' }
+    ]
+  },
+  {
+    key: 'lean',
+    title: t('isw_page.lean_title'),
+    description: t('isw_page.lean_description'),
+    icon: icons.lean,
+    tags: [
+      { label: 'Valor', type: 'warning' },
+      { label: 'Desperdicio', type: 'error' },
+      { label: 'Mejora', type: 'info' }
+    ]
+  }
+]
+
+// Responsive Grid
+watch(
+  () => window.innerWidth,
+  (width) => {
+    if (width < 640) gridCols.value = 1
+    else if (width < 992) gridCols.value = 2
+    else gridCols.value = 3
+  },
+  { immediate: true }
+)
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    easing: 'ease-out-quart',
+    once: true
+  })
+})
 </script>
 
 <style scoped>
-.hero-wrapper {
+/* === FUENTES PREMIUM === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* === FONDO GLOBAL === */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* === CONTENEDOR === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* === HERO === */
+.hero-section {
+  height: 80vh;
+  min-height: 600px;
   position: relative;
-  background-image: url('/assets/images/ingenieriadesoftware.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 4rem 1rem;
-  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/ingenieriadesoftware.jpg') center/cover no-repeat;
 }
 
 .overlay {
+  background: linear-gradient(135deg, rgba(15, 31, 57, 0.92), rgba(30, 41, 59, 0.85));
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  /* 0.5 = 50% oscuridad */
-  z-index: 0;
+  inset: 0;
+}
+
+.hero-center {
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     /* centra verticalmente */
+  flex-direction: column;  /* mantiene los textos en columna */
+  text-align: center;      /* asegura que todo el texto quede alineado */
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.hero-tag {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  display: inline-block;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #114177, #00acdf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 1.5rem 0;
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+
+/* === PRINCIPLES SECTION === */
+.principles-section {
+  margin-top: 3rem;
+}
+
+.principle-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  min-height: 260px;
+}
+.principle-icon {
+  background: linear-gradient(135deg, #114177, #3b82f6);
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.principle-title {
+  font-weight: 700;
+  color: #0f1f39;
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+}
+
+.principle-text {
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* === GLASS CARD === */
+.glass-card {
+  margin-top:20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: #60a5fa;
+}
+
+/* === INTRO CARD === */
+.intro-image {
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.intro-image :deep(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.intro-image:hover :deep(img) {
+  transform: scale(1.08);
+}
+
+.intro-body h3 {
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.intro-body p {
+  color: #475569;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.footer-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* === GAME SECTION === */
+.game-section {
+  padding: 90px 0;
   text-align: center;
 }
 
-/* Todo el bloque para el card ingsoft */
-body #ingsoft-main {
-  margin-bottom: 20px;
-  margin-top: 20px;
+.game-wrapper {
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
 }
 
-
-/* Decoración para el header del card ingsoft */
-.container .card .card-header {
-  background-color: #0F1F39;
-  color: #ffff;
+.game-iframe {
+  width: 100%;
+  height: 540px;
+  border: none;
 }
 
-/* Decoración para el footer del card ingsoft */
-.container .card .card-footer {
-  background-color: #ffffff;
-  font-weight: bold;
+/* === SWEBOK === */
+.swebok-collapse :deep(.n-collapse-item__header) {
+  background: rgba(96, 165, 250, 0.1);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #e2e8f0;
 }
 
-/*  */
-.container .card .card-body {
+.collapse-text {
+  color: #94a3b8;
+  line-height: 1.7;
+  padding: 0.5rem 0;
+}
+
+.soft-divider {
+  background: linear-gradient(90deg, transparent, #00acdf, transparent);
+  height: 2px;
+  margin: 1.8rem 0;
+}
+
+.pdf-container {
+  margin-top: 1.5rem;
   text-align: center;
 }
 
-.container .card .card-body .imgPhrase {
-  border-radius: 5px;
-  box-shadow: 0 0 10px #000000;
+/* === METODOLOGÍAS === */
+.method-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-body .carousel-inner img {
-  height: 500px;
+.method-icon.agile {
+  background: linear-gradient(135deg, #3498db, #2980b9);
 }
 
-body h1 {
-  text-align: start;
-  font-family: 'Arial';
-  font-weight: bold;
+.method-icon.scrum {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
 }
 
-body h2 {
-  font-family: 'Arial';
+.method-icon.waterfall {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
 }
 
-.first-multimedia .row .col {
-  padding-top: 20px;
+.method-icon.devops {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-.second-multimedia .row .col {
-  padding-top: 20px;
+.method-icon.kanban {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
 }
 
-.btn.btn-primary.content-button {
-  background-color: #00ACDF;
+.method-icon.lean {
+  background: linear-gradient(135deg, #27ae60, #1abc9c);
 }
 
-.btn.btn-primary.content-button:hover {
-  background-color: #2D82A6;
+.method-body h3 {
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
-.square-box {
-  border: 1px solid;
+.method-body p {
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 1rem;
 }
 
-.breadcumbIndex {
-  background-color: white;
+.method-tags {
+}
+
+/* === TÍTULOS === */
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.title-icon {
+  color: #60a5fa;
+  font-size: 2rem;
+}
+
+.methodologies-section{
+  margin-bottom:50px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .game-iframe {
+    height: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-text {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .game-iframe {
+    height: 380px;
+  }
 }
 </style>

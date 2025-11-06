@@ -11,6 +11,7 @@ const messages = {
     softwareConfig_tittle: 'SCM',
     select_language_text: 'Select Language...',
     contact_title: 'Contact',
+    github_activity: 'Git Activity',
     language_1: 'Spanish',
     language_2: 'English',
     principal_page: {
@@ -29,6 +30,7 @@ const messages = {
       created_card_text: 'Last edition in ',
       mini_game_text: '¿What will the content of this educational resource be about?',
       mini_game_url: 'https://es.educaplay.com/juego/15063522-.html',
+      read_more: 'Read more',
     },
     isw_page: {
       main_title: 'Software Engineering',
@@ -91,7 +93,8 @@ const messages = {
       page: 'Page',
       of: 'of',
       download: 'Download'
-    }
+    },
+    menu: 'Menu'
   },
   //ESPAÑOL
   es: {
@@ -102,6 +105,7 @@ const messages = {
     softwareConfig_tittle: 'GCS',
     select_language_text: 'Seleccione Idioma...',
     contact_title: 'Contacto',
+    github_activity: 'Actividad de Git',
     language_1: 'Español',
     language_2: 'Inglés',
     principal_page: {
@@ -120,6 +124,7 @@ const messages = {
       created_card_text: 'Última edición en ',
       mini_game_text: '¿De qué tratará el contenido de este recurso educativo?',
       mini_game_url: 'https://es.educaplay.com/juego/14775635-de_que_tratara_realmente_el_contenido.html',
+      read_more: 'Leer más',
     },
     isw_page: {
       main_title: 'Ingeniería de Software',
@@ -176,7 +181,8 @@ const messages = {
       page: 'Página',
       of: 'de',
       download: 'Descargar'
-    }
+    },
+    menu: 'Menú'
   },
 };
 

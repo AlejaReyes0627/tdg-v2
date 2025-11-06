@@ -1,6 +1,7 @@
 import Opcion1 from '@/components/DesarrolloWeb/Opcion1.vue';
 import Contact from '@/views/Contacto/Contact.vue';
 import DesarrolloWeb from '@/views/DesarrolloWeb/DesarrolloWeb.vue';
+import GithubActivity from '@/views/GithubActivity/GithubActivity.vue';
 import IngenieriaDeSoftware from '@/views/IngenieriaDeSoftware/IngenieriaDeSoftware.vue';
 import NotFound from '@/views/NotFound.vue';
 import Principal from '@/views/Principal.vue';
@@ -16,6 +17,11 @@ const routes = [
     path: '/isw',
     name: 'ISW',
     component: IngenieriaDeSoftware,
+  },
+  {
+    path: '/githubActivity',
+    name: 'GitHubActivity',
+    component: GithubActivity,
   },
   {
     path: '/dev-web',
