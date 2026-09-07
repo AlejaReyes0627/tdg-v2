@@ -312,7 +312,6 @@ const scrollToSection = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-//const HF_TOKEN = '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'
 
 const sendMessage = async () => {
   if (!userInput.value.trim() || loading.value) return
