@@ -1,154 +1,202 @@
 <template>
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <div class="hero-bg">
-      <div class="overlay"></div>
-      <div class="hero-center">
-        <div class="container hero-content">
-          <n-tag round :bordered="false" type="info" class="hero-tag" data-aos="fade-down">
-            {{ $t('isw_page.main_remember') }}
-          </n-tag>
-          <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-            {{ $t('isw_page.main_title') }}
-          </h1>
-          <p class="hero-text" data-aos="fade-up" data-aos-delay="200">
-            {{ $t('isw_page.main_body') }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="isw-container">
 
-  <!-- INTRODUCCIÓN -->
-  <section class="intro-section">
-    <div class="container">
-      <n-card class="glass-card intro-card" hoverable data-aos="zoom-in">
-        <n-grid :cols="12" x-gap="32" y-gap="16">
-          <n-gi :span="5">
-            <div class="intro-image">
-              <n-image src="/assets/images/ingenieriaSoftware.jpg" alt="Ingeniería de Software" />
+    <!-- === SOLO MOSTRAR ESTO EN /isw (página principal) === -->
+    <div v-if="$route.path === '/isw'" class="isw-home">
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-bg">
+          <div class="overlay"></div>
+          <div class="hero-center">
+            <div class="container hero-content">
+              <n-tag round :bordered="false" type="info" class="hero-tag" data-aos="fade-down">
+                {{ $t('isw_page.main_remember') }}
+              </n-tag>
+              <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                {{ $t('isw_page.main_title') }}
+              </h1>
+              <p class="hero-text" data-aos="fade-up" data-aos-delay="200">
+                {{ $t('isw_page.main_body') }}
+              </p>
             </div>
-          </n-gi>
-          <n-gi :span="7">
-            <div class="intro-body">
-              <h3>{{ $t('isw_page.first_card_tittle') }}</h3>
-              <p>{{ $t('isw_page.middle_card_text') }}</p>
-              <n-divider class="soft-divider" />
-
-            </div>
-          </n-gi>
-        </n-grid>
-        <div class="principles-section" data-aos="fade-up">
-          <n-grid :cols="gridCols" x-gap="24" y-gap="24">
-            <n-gi v-for="(card, index) in principles" :key="index">
-              <n-card class="glass-card principle-card" hoverable>
-                <div class="principle-icon">
-                  <n-icon size="40" :component="card.icon" />
-                </div>
-                <h4 class="principle-title">{{ card.title }}</h4>
-                <p class="principle-text">{{ card.text }}</p>
-              </n-card>
-            </n-gi>
-          </n-grid>
+          </div>
         </div>
-        <div class="footer-date">
-          <n-icon :component="CalendarOutline" size="18" />
-          <span>{{ $t('isw_page.created_card_text') }} {{ year }}</span>
-        </div>
-      </n-card>
+      </section>
 
-    </div>
-
-  </section>
-
-  <!-- MINI JUEGO -->
-  <section class="game-section">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">
-        <n-icon :component="GameControllerOutline" class="title-icon" />
-        {{ $t('isw_page.mini_game_text') }}
-      </h2>
-      <div class="game-wrapper" data-aos="flip-left" data-aos-delay="200">
-        <iframe :src="$t('isw_page.mini_game_url')" class="game-iframe" frameborder="0" allowfullscreen
-          title="Mini Juego Interactivo" sandbox="allow-scripts allow-popups allow-forms"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- SWEBOK - TEMARIO OFICIAL -->
-  <section class="swebok-section">
-    <div class="container">
-      <n-card class="glass-card swebok-card" hoverable data-aos="fade-up">
-        <template #header>
-          <h2 class="section-title">
-            <n-icon :component="BookOutline" class="title-icon" />
-            {{ $t('isw_page.swebok_tittle') }}
-          </h2>
-        </template>
-
-        <n-collapse accordion class="swebok-collapse">
-          <n-collapse-item v-for="(item, index) in swebokItems" :key="index" :title="item.title"
-            :name="`item-${index}`">
-            <p class="collapse-text">{{ item.text }}</p>
-          </n-collapse-item>
-        </n-collapse>
-
-        <n-divider class="soft-divider" />
-
-        <div class="pdf-container">
-          <PdfViewer :pdfPath="$t('isw_page.swebok_url')" />
-        </div>
-
-        <template #footer>
-          <small class="footer-text">
-            {{ $t('isw_page.last_edited_in') }} {{ year }}
-          </small>
-        </template>
-      </n-card>
-    </div>
-  </section>
-
-  <!-- METODOLOGÍAS - TEMARIO INTERACTIVO -->
-  <section class="methodologies-section">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">Metodologías de Desarrollo</h2>
-
-      <n-tabs type="line" animated class="method-tabs" data-aos="fade-up" data-aos-delay="100">
-        <n-tab-pane v-for="method in methodologies" :key="method.key" :name="method.key" :tab="method.title">
-          <n-card class="method-card glass-card" hoverable>
+      <!-- INTRODUCCIÓN -->
+      <section class="intro-section">
+        <div class="container">
+          <n-card class="glass-card intro-card" hoverable data-aos="zoom-in">
             <n-grid :cols="12" x-gap="32" y-gap="16">
-              <n-gi :span="4">
-                <div :class="`method-icon ${method.key}`">
-                  <n-icon size="60" color="white">
-                    <component :is="method.icon" />
-                  </n-icon>
+              <n-gi :span="5">
+                <div class="intro-image">
+                  <n-image src="/assets/images/ingenieriaSoftware.jpg" alt="Ingeniería de Software" />
                 </div>
               </n-gi>
-              <n-gi :span="8">
-                <div class="method-body">
-                  <h3>{{ method.title }}</h3>
-                  <p>{{ method.description }}</p>
-                  <n-space class="method-tags" :size="8">
-                    <n-tag v-for="tag in method.tags" :key="tag.label" :type="tag.type" size="small" round>
-                      {{ tag.label }}
-                    </n-tag>
-                  </n-space>
+              <n-gi :span="7">
+                <div class="intro-body">
+                  <h3>{{ $t('isw_page.first_card_tittle') }}</h3>
+                  <p>{{ $t('isw_page.middle_card_text') }}</p>
+                  <n-divider class="soft-divider" />
                 </div>
               </n-gi>
             </n-grid>
+            <div class="principles-section" data-aos="fade-up">
+              <n-grid :cols="gridCols" x-gap="24" y-gap="24">
+                <n-gi v-for="(card, index) in principles" :key="index">
+                  <n-card class="glass-card principle-card" hoverable>
+                    <div class="principle-icon">
+                      <n-icon size="40" :component="card.icon" />
+                    </div>
+                    <h4 class="principle-title">{{ card.title }}</h4>
+                    <p class="principle-text">{{ card.text }}</p>
+                  </n-card>
+                </n-gi>
+              </n-grid>
+            </div>
+            <div class="footer-date">
+              <n-icon :component="CalendarOutline" size="18" />
+              <span>{{ $t('isw_page.created_card_text') }} {{ year }}</span>
+            </div>
           </n-card>
-        </n-tab-pane>
-      </n-tabs>
+        </div>
+      </section>
+
+      <!-- MINI JUEGO -->
+      <section class="game-section">
+        <div class="container">
+          <h2 class="section-title" data-aos="fade-up">
+            <n-icon :component="GameControllerOutline" class="title-icon" />
+            {{ $t('isw_page.mini_game_text') }}
+          </h2>
+          <div class="game-wrapper" data-aos="flip-left" data-aos-delay="200">
+            <iframe :src="$t('isw_page.mini_game_url')" class="game-iframe" frameborder="0" allowfullscreen
+              title="Mini Juego Interactivo" sandbox="allow-scripts allow-popups allow-forms"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- SWEBOK - TEMARIO OFICIAL -->
+      <section class="swebok-section">
+        <div class="container">
+          <n-card class="glass-card swebok-card" hoverable data-aos="fade-up">
+            <template #header>
+              <h2 class="section-title">
+                <n-icon :component="BookOutline" class="title-icon" />
+                {{ $t('isw_page.swebok_tittle') }}
+              </h2>
+            </template>
+
+            <n-collapse accordion class="swebok-collapse">
+              <n-collapse-item v-for="(item, index) in swebokItems" :key="index" :title="item.title"
+                :name="`item-${index}`">
+                <p class="collapse-text">{{ item.text }}</p>
+              </n-collapse-item>
+            </n-collapse>
+
+            <n-divider class="soft-divider" />
+
+            <div class="pdf-container">
+              <PdfViewer :pdfPath="$t('isw_page.swebok_url')" />
+            </div>
+
+            <template #footer>
+              <small class="footer-text">
+                {{ $t('isw_page.last_edited_in') }} {{ year }}
+              </small>
+            </template>
+          </n-card>
+        </div>
+      </section>
+
+      <!-- METODOLOGÍAS - TEMARIO INTERACTIVO -->
+      <section class="methodologies-section">
+        <div class="container">
+          <h2 class="section-title" data-aos="fade-up">Metodologías de Desarrollo</h2>
+
+          <n-tabs type="line" animated class="method-tabs" data-aos="fade-up" data-aos-delay="100">
+            <n-tab-pane v-for="method in methodologies" :key="method.key" :name="method.key" :tab="method.title">
+              <n-card class="method-card glass-card" hoverable>
+                <n-grid :cols="12" x-gap="32" y-gap="16">
+                  <n-gi :span="4">
+                    <div :class="`method-icon ${method.key}`">
+                      <n-icon size="60" color="white">
+                        <component :is="method.icon" />
+                      </n-icon>
+                    </div>
+                  </n-gi>
+                  <n-gi :span="8">
+                    <div class="method-body">
+                      <h3>{{ method.title }}</h3>
+                      <p>{{ method.description }}</p>
+                      <n-space class="method-tags" :size="8">
+                        <n-tag v-for="tag in method.tags" :key="tag.label" :type="tag.type" size="small" round>
+                          {{ tag.label }}
+                        </n-tag>
+                      </n-space>
+                      <!-- BOTÓN LEER MÁS -->
+                      <n-button type="primary" ghost size="small" class="mt-3" @click="openModal(method)">
+                        Leer más
+                      </n-button>
+                    </div>
+                  </n-gi>
+                </n-grid>
+              </n-card>
+            </n-tab-pane>
+          </n-tabs>
+        </div>
+      </section>
+
+      <!-- MODAL DINÁMICO -->
+      <n-modal v-model:show="showModal" preset="dialog" :title="selectedMethod?.title" :segmented="false"
+        :closable="true" class="method-modal" :style="{ maxWidth: '800px', width: '90%' }" @close="showModal = false">
+        <div v-if="selectedMethod" class="modal-content">
+          <div :class="`modal-icon ${selectedMethod.key}`">
+            <n-icon size="60" color="white">
+              <component :is="selectedMethod.icon" />
+            </n-icon>
+          </div>
+
+          <h3 class="text-xl font-bold text-gray-800 mb-3">{{ selectedMethod.title }}</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">{{ selectedMethod.longDescription }}</p>
+
+          <n-collapse v-if="selectedMethod.steps?.length" class="mt-4">
+            <n-collapse-item title="Pasos clave" name="steps">
+              <n-ol>
+                <n-li v-for="(step, i) in selectedMethod.steps" :key="i" class="mb-2">
+                  <strong>{{ step.title }}:</strong> {{ step.desc }}
+                </n-li>
+              </n-ol>
+            </n-collapse-item>
+          </n-collapse>
+
+          <n-space class="method-tags mt-4" :size="8">
+            <n-tag v-for="tag in selectedMethod.tags" :key="tag.label" :type="tag.type" size="small" round>
+              {{ tag.label }}
+            </n-tag>
+          </n-space>
+
+          <n-button v-if="selectedMethod.link" type="primary" ghost class="mt-5"
+            @click="openExternalLink(selectedMethod.link)">
+            Ver documentación oficial
+          </n-button>
+        </div>
+      </n-modal>
     </div>
-  </section>
+
+    <!-- === AQUÍ SE CARGA LA VISTA DE ARQUITECTURA === -->
+    <div class="submodule">
+      <router-view />
+    </div>
+
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, h } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { defineAsyncComponent } from 'vue'
 
 import {
   CalendarOutline,
@@ -157,19 +205,25 @@ import {
   RocketOutline,
   ConstructOutline,
   ShieldCheckmarkOutline,
-  GitBranchOutline
+  GitBranchOutline,
+  LogoIonic,
+  LogoBuffer,
+  LogoOctocat,
+  LogoDocker,
+  LogoTableau,
+  LogoGithub
 } from '@vicons/ionicons5'
 
 import PdfViewer from '@/components/PdfViewer.vue'
 
-// Iconos personalizados (puedes reemplazar con los tuyos)
+// Iconos personalizados
 const icons = {
-  agile: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoIonic)),
-  scrum: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoBuffer)),
-  waterfall: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoOctocat)),
-  devops: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoDocker)),
-  kanban: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoTableau)),
-  lean: defineAsyncComponent(() => import('@vicons/ionicons5').then(m => m.LogoGithub))
+  agile: LogoIonic,
+  scrum: LogoBuffer,
+  waterfall: LogoOctocat,
+  devops: LogoDocker,
+  kanban: LogoTableau,
+  lean: LogoGithub
 }
 
 const { t } = useI18n()
@@ -177,7 +231,7 @@ const year = ref(new Date().getFullYear())
 const gridCols = ref(3)
 
 // SWEBOK Items
-const swebokItems = [
+const swebokItems = computed(() => [
   { title: t('isw_page.swebok_list_1'), text: t('isw_page.swebok_list_1') },
   { title: t('isw_page.swebok_list_2'), text: t('isw_page.swebok_list_2') },
   { title: t('isw_page.swebok_list_3'), text: t('isw_page.swebok_list_3') },
@@ -187,33 +241,33 @@ const swebokItems = [
   { title: t('isw_page.swebok_list_7'), text: t('isw_page.swebok_list_7') },
   { title: t('isw_page.swebok_list_8'), text: t('isw_page.swebok_list_8') },
   { title: t('isw_page.swebok_list_9'), text: t('isw_page.swebok_list_9') }
-]
+])
 
-const principles = [
+const principles = computed(() => [
   {
     icon: RocketOutline,
-    title: 'Innovación Continua',
-    text: 'La ingeniería de software impulsa el progreso mediante soluciones tecnológicas creativas y eficientes.'
+    title: t('isw_page.principle1_title'),
+    text: t('isw_page.principle1_desc')
   },
   {
     icon: ConstructOutline,
-    title: 'Calidad y Mantenimiento',
-    text: 'El software debe ser confiable, fácil de mantener y cumplir con los estándares de calidad definidos.'
+    title: t('isw_page.principle2_title'),
+    text: t('isw_page.principle2_desc')
   },
   {
     icon: ShieldCheckmarkOutline,
-    title: 'Seguridad y Confiabilidad',
-    text: 'Todo sistema debe garantizar la integridad y privacidad de los datos, minimizando riesgos.'
+    title: t('isw_page.principle3_title'),
+    text: t('isw_page.principle3_desc')
   },
   {
     icon: GitBranchOutline,
-    title: 'Trabajo Colaborativo',
-    text: 'El desarrollo de software exitoso se logra con equipos multidisciplinarios y metodologías ágiles.'
+    title: t('isw_page.principle4_title'),
+    text: t('isw_page.principle4_desc')
   }
-]
+])
 
-// Metodologías
-const methodologies = [
+// === METODOLOGÍAS ===
+const methodologies = computed(() => [
   {
     key: 'agile',
     title: t('isw_page.agile_title'),
@@ -280,7 +334,71 @@ const methodologies = [
       { label: 'Mejora', type: 'info' }
     ]
   }
-]
+])
+
+// === MODAL ===
+const showModal = ref(false)
+const selectedMethod = ref<any>(null)
+
+const openModal = (method: any) => {
+  selectedMethod.value = {
+    ...method,
+    longDescription: getLongDescription(method.key),
+    steps: getSteps(method.key),
+    link: getLink(method.key)
+  }
+  showModal.value = true
+}
+
+const openExternalLink = (url: string) => {
+  window.open(url, '_blank')
+}
+
+const getLongDescription = (key: string) => {
+  const desc: Record<string, string> = {
+    agile: 'Agile es una filosofía de desarrollo que promueve entregas frecuentes, colaboración con el cliente y adaptabilidad al cambio. Se basa en el Manifiesto Ágil (2001) y prioriza individuos e interacciones sobre procesos y herramientas.',
+    scrum: 'Scrum es un framework ágil que organiza el trabajo en sprints de 2-4 semanas. Incluye roles (Product Owner, Scrum Master, Equipo), eventos (Daily, Sprint Planning, Review, Retro) y artefactos (Product Backlog, Sprint Backlog, Incremento).',
+    waterfall: 'Modelo tradicional secuencial donde cada fase (requisitos, diseño, implementación, pruebas, despliegue, mantenimiento) debe completarse antes de la siguiente. Ideal para proyectos con requisitos estables.',
+    devops: 'Cultura y conjunto de prácticas que unifican desarrollo (Dev) y operaciones (Ops) para acelerar entregas con calidad. Incluye CI/CD, infraestructura como código, monitoreo continuo y automatización.',
+    kanban: 'Método visual de gestión de flujo de trabajo. Usa tableros con columnas (To Do, Doing, Done) y límites WIP para optimizar el flujo y reducir cuellos de botella.',
+    lean: 'Enfoque que maximiza el valor para el cliente eliminando desperdicios. Aplicado al software: eliminar funcionalidades innecesarias, reducir esperas, optimizar procesos.'
+  }
+  return desc[key] || 'Sin descripción extendida.'
+}
+
+const getSteps = (key: string) => {
+  const steps: Record<string, Array<{ title: string; desc: string }>> = {
+    scrum: [
+      { title: 'Sprint Planning', desc: 'Definir qué se hará en el sprint.' },
+      { title: 'Daily Scrum', desc: 'Reunión diaria de 15 min para sincronizar.' },
+      { title: 'Sprint Review', desc: 'Mostrar el incremento al cliente.' },
+      { title: 'Sprint Retrospective', desc: 'Mejorar el proceso.' }
+    ],
+    kanban: [
+      { title: 'Visualizar flujo', desc: 'Tablero con columnas claras.' },
+      { title: 'Limitar WIP', desc: 'No más tareas de las que se pueden manejar.' },
+      { title: 'Medir Lead Time', desc: 'Tiempo desde idea hasta entrega.' }
+    ],
+    devops: [
+      { title: 'CI/CD', desc: 'Integración y despliegue continuo.' },
+      { title: 'IaC', desc: 'Infraestructura como código.' },
+      { title: 'Monitoreo', desc: 'Observabilidad en producción.' }
+    ]
+  }
+  return steps[key] || []
+}
+
+const getLink = (key: string) => {
+  const links: Record<string, string> = {
+    agile: 'https://agilemanifesto.org',
+    scrum: 'https://scrumguides.org',
+    waterfall: 'https://en.wikipedia.org/wiki/Waterfall_model',
+    devops: 'https://aws.amazon.com/devops/',
+    kanban: 'https://www.atlassian.com/agile/kanban',
+    lean: 'https://www.lean.org'
+  }
+  return links[key]
+}
 
 // Responsive Grid
 watch(
@@ -303,6 +421,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
 /* === FUENTES PREMIUM === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -335,6 +454,9 @@ body {
   overflow: hidden;
 }
 
+.isw-container { min-height: 100vh; }
+.isw-home { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -353,10 +475,10 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center; /* centra horizontalmente */
-  align-items: center;     /* centra verticalmente */
-  flex-direction: column;  /* mantiene los textos en columna */
-  text-align: center;      /* asegura que todo el texto quede alineado */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .hero-content {
@@ -400,6 +522,7 @@ body {
   padding: 2rem 1.5rem;
   min-height: 260px;
 }
+
 .principle-icon {
   background: linear-gradient(135deg, #114177, #3b82f6);
   color: white;
@@ -427,7 +550,7 @@ body {
 
 /* === GLASS CARD === */
 .glass-card {
-  margin-top:20px;
+  margin-top: 20px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -576,9 +699,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.method-tags {
-}
-
 /* === TÍTULOS === */
 .section-title {
   font-size: 2.4rem;
@@ -598,8 +718,64 @@ body {
   font-size: 2rem;
 }
 
-.methodologies-section{
-  margin-bottom:50px;
+.methodologies-section {
+  margin-bottom: 50px;
+}
+
+/* === MODAL === */
+.method-modal :deep(.n-dialog) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.method-modal :deep(.n-dialog__title) {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.5rem;
+}
+
+.modal-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-icon.agile {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.modal-icon.scrum {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
+}
+
+.modal-icon.waterfall {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+}
+
+.modal-icon.devops {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.modal-icon.kanban {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.modal-icon.lean {
+  background: linear-gradient(135deg, #27ae60, #1abc9c);
+}
+
+.modal-content {
+  text-align: center;
+  padding: 1rem;
 }
 
 /* === RESPONSIVE === */

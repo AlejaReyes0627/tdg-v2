@@ -3,10 +3,10 @@
     <div class="max-w-6xl mx-auto"> <!-- Aumentado para dar más espacio -->
       <!-- Título -->
       <div class="text-center mb-8">
-              <h2 class="section-title" data-aos="fade-up">
-                Actividad de Git (En construcción)
-              </h2>
-        <p class="text-sm text-gray-500 mt-1">tdg-v2</p>
+        <h2 class="section-title text-2xl font-bold text-gray-800" data-aos="fade-up">
+          {{ $t('git_activity_page.title') }}
+        </h2>
+        <p class="text-sm text-gray-500 mt-1">{{ $t('git_activity_page.subtitle') }}</p>
       </div>
 
       <!-- Tarjeta principal -->
@@ -18,9 +18,9 @@
           
           <!-- COMMITS (IZQUIERDA) -->
           <div class="order-2 md:order-1">
-            <div class="text-sm font-semibold text-gray-700 mb-3">Últimos commits</div>
+            <div class="text-sm font-semibold text-gray-700 mb-3">{{ $t('git_activity_page.latest_commits') }}</div>
             <n-spin :show="loadingCommits" size="small">
-              <n-empty v-if="!loadingCommits && !commits.length" description="Sin commits" size="small" />
+              <n-empty v-if="!loadingCommits && !commits.length" :description="$t('git_activity_page.no_commits')" size="small" />
               <div v-else class="space-y-2 text-xs max-h-64 overflow-y-auto pr-1">
                 <div
                   v-for="commit in commits.slice(0, 8)"
@@ -49,9 +49,9 @@
 
           <!-- RAMAS (DERECHA) -->
           <div class="order-1 md:order-2">
-            <div class="text-sm font-semibold text-gray-700 mb-3">Ramas activas</div>
+            <div class="text-sm font-semibold text-gray-700 mb-3">{{ $t('git_activity_page.active_branches') }}</div>
             <n-spin :show="loadingBranches" size="small">
-              <n-empty v-if="!loadingBranches && !branches.length" description="Sin ramas" size="small" />
+              <n-empty v-if="!loadingBranches && !branches.length" :description="$t('git_activity_page.no_branches')" size="small" />
               <div v-else class="space-y-2 text-xs">
                 <div
                   v-for="(branch, i) in branches.slice(0, 8)"
@@ -78,7 +78,7 @@
         <!-- Footer -->
         <div class="text-center mt-4 pb-2">
           <n-text type="info" class="text-xs">
-            Actualizado hace {{ refreshSeconds }}s
+            {{ $t('git_activity_page.updated_ago', { s: refreshSeconds }) }}
           </n-text>
         </div>
       </n-card>

@@ -23,8 +23,7 @@ library.add(faGlobe, faUser, faHome, faHeart, faGithub);
 
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon);
-app.use(AOS.init());
-app.use(naive)
+app.use(naive);
 app.use(router); 
 app.use(i18n);
 app.mount('#app');

@@ -2,8 +2,8 @@
   <div class="container py-5">
 
     <div class="text-center mb-4">
-      <h2 class="fw-bold">Equipo de Desarrollo</h2>
-      <p class="text-muted">Personas detrás de la idea y su ejecución</p>
+      <h2 class="fw-bold">{{ $t('contact_page.title') }}</h2>
+      <p class="text-muted">{{ $t('contact_page.subtitle') }}</p>
     </div>
 
     <div class="row g-4 justify-content-center mb-5">
@@ -26,10 +26,10 @@
       </div>
     </div>
 
-    <n-card class="shadow-sm mt-4" title="Tecnologías Utilizadas">
+    <n-card class="shadow-sm mt-4" :title="$t('contact_page.tech_title')">
       <div class="row">
         <div class="col-md-6 mb-3">
-          <h5 class="text-primary mb-3">Versión Original</h5>
+          <h5 class="text-primary mb-3">{{ $t('contact_page.orig_title') }}</h5>
           <n-space vertical :size="8">
             <div class="tech-item">
               <n-tag type="default" size="large">
@@ -175,7 +175,7 @@ const developers = [
     role: 'Desarrolladora / Developer',
     email: '2220191004@estudiantesunibague.edu.co',
     phone: '+57 3012879345',
-    avatar: 'https://media.licdn.com/dms/image/v2/C5603AQFav5YZ6d5ByA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1657298313863?e=2147483647&v=beta&t=9r1HoxKTDBD6jaKSCFEQ6ArptlCTjgwx5mmN10KEgMM'
+    avatar: '/assets/credits/majo.png'
   },
   {
     name: 'Maria Alejandra Reyes',

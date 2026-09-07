@@ -1,162 +1,225 @@
 <template>
-    <div class="container">
-      <div class="square-box">
-        <section id="ingsoft-main">
-          <div class="container">
-            <div class="card" style="max-width: 100%;">
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="/assets/images/ingenieriadesoftware.jpg" class="img-fluid rounded-start"
-                    alt="..." style="width: 100%; height: 100%;">
+  <div class="devweb-container">
+    <!-- SOLO MOSTRAR EN /dev-web (PÁGINA PRINCIPAL DE DESARROLLO WEB) -->
+    <div v-if="$route.path === '/dev-web'" class="devweb-home">
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-bg">
+          <div class="overlay"></div>
+          <div class="hero-center">
+            <div class="container hero-content">
+              <n-tag round :bordered="false" type="info" class="hero-tag" data-aos="fade-down">
+                {{ $t('dev_web_page.badge') }}
+              </n-tag>
+              <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                {{ $t('dev_web_page.main_title') }}
+              </h1>
+              <p class="hero-text" data-aos="fade-up" data-aos-delay="200">
+                {{ $t('dev_web_page.main_body') }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTRODUCCIÓN -->
+      <section class="intro-section">
+        <div class="container">
+          <n-card class="glass-card intro-card" hoverable data-aos="zoom-in">
+            <n-grid :cols="12" x-gap="32" y-gap="16">
+              <n-gi :span="5">
+                <div class="intro-image">
+                  <img src="/assets/images/ingenieriadesoftware.jpg" alt="Desarrollo Web" class="rounded-lg shadow-lg w-full h-full object-cover" />
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ $t('isw_page.first_card_tittle') }}</h5>
-                    <p class="card-text">{{ $t('isw_page.middle_card_text') }}</p>
-                    <p class="card-footer text-muted text-end"><small class="text-body-secondary">{{
-                      $t('isw_page.created_card_text') }}{{ year }}
-                      </small></p>
-                  </div>
+              </n-gi>
+              <n-gi :span="7">
+                <div class="intro-body">
+                  <h3>{{ $t('dev_web_page.card_title') }}</h3>
+                  <p>{{ $t('dev_web_page.card_text') }}</p>
                 </div>
+              </n-gi>
+            </n-grid>
+          </n-card>
+        </div>
+      </section>
+
+      <!-- SUBMÓDULOS GRID -->
+      <section class="topics-section">
+        <div class="container">
+          <div class="section-header text-center" data-aos="fade-up">
+            <h2 class="section-title">{{ $t('dev_web_page.topics_title') }}</h2>
+            <p class="section-subtitle">{{ $t('dev_web_page.topics_subtitle') }}</p>
+          </div>
+
+          <div class="topics-grid">
+            <div
+              v-for="sub in submodules"
+              :key="sub.key"
+              class="topic-card glass-card"
+              data-aos="fade-up"
+              @click="router.push(`/dev-web/${sub.key}`)"
+            >
+              <div class="card-icon">
+                <n-icon :component="sub.icon" size="36" />
               </div>
+              <h3>{{ sub.title }}</h3>
+              <p>{{ sub.description }}</p>
+              <n-button type="primary" ghost size="small" class="mt-3">
+                {{ $t('principal_page.read_more') }}
+              </n-button>
             </div>
           </div>
-        </section>
-        <section id="presentation-button-multimedia2">
-          <div class="container text-center second-multimedia">
-            <div class="row justify-content-center">
-              <div class="col">
-                <h2 class="middleTittle">{{ $t('isw_page.mini_game_text') }}</h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <iframe width="795" height="690" frameborder="0"
-                  :src="$t('isw_page.mini_game_url') "
-                  allowfullscreen title="Actividad número 3"></iframe>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="ingsoft-main">
-          <div class="container">
-            <div class="card">
-              <div class="card-header">
-                <h1>{{ $t('isw_page.swebok_tittle') }}</h1>
-              </div>
-              <div class="card-body">
-                <p>{{ $t('isw_page.swebok_first_text') }}</p>
-                <ul>
-                  <li>{{ $t('isw_page.swebok_list_1') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_2') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_3') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_4') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_5') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_6') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_7') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_8') }}</li>
-                  <li>{{ $t('isw_page.swebok_list_9') }}</li>
-                </ul>
-  
-                <p>{{ $t('isw_page.swebok_last_text') }}
-                </p>
-                <PdfViewer :pdfPath="$t('isw_page.swebok_url')" class="justify-center items-center" />
-              </div>
-              <div class="card-footer text-muted text-end">
-                {{ $t('isw_page.last_edited_in') }}{{ year }}
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
-  </template>
-  
-  <script>
-  /* eslint-disable */
-  import PdfViewer from '@/components/PdfViewer.vue';
-  export default {
-    name: 'ISW',
-    components: {
-      PdfViewer
-    },
-    data() {
-      return {
-        year: new Date().getFullYear(),
-      }
-    },
-    methods: {
-    }
+
+    <!-- AQUÍ SE CARGAN LOS SUBMÓDULOS DE DESARROLLO WEB -->
+    <div v-else class="submodule-container">
+      <router-view />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import {
+  CodeSlashOutline,
+  LogoJavascript,
+  LayersOutline,
+  CloudUploadOutline,
+  SpeedometerOutline
+} from '@vicons/ionicons5';
+
+const router = useRouter();
+const { t } = useI18n();
+
+const submodules = computed(() => [
+  {
+    key: 'html-css',
+    title: t('dev_web_page.html_css_title'),
+    description: t('dev_web_page.html_css_desc'),
+    icon: CodeSlashOutline
+  },
+  {
+    key: 'js-avanzado',
+    title: t('dev_web_page.js_avanzado_title'),
+    description: t('dev_web_page.js_avanzado_desc'),
+    icon: LogoJavascript
+  },
+  {
+    key: 'frameworks',
+    title: t('dev_web_page.frameworks_title'),
+    description: t('dev_web_page.frameworks_desc'),
+    icon: LayersOutline
+  },
+  {
+    key: 'api_integration',
+    title: t('dev_web_page.api_title'),
+    description: t('dev_web_page.api_desc'),
+    icon: CloudUploadOutline
+  },
+  {
+    key: 'optimizacion',
+    title: t('dev_web_page.optimizacion_title'),
+    description: t('dev_web_page.optimizacion_desc'),
+    icon: SpeedometerOutline
   }
-  </script>
-  
-  <style scoped>
-  body #ingsoft-main {
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  .container .card {
-    margin-left: 100px;
-    margin-right: 100px;
-  
-  }
-  
-  .container .card .card-header {
-    background-color: #0F1F39;
-    color: #ffff;
-  }
-  
-  .container .card .card-footer {
-    background-color: #ffffff;
-    font-weight: bold;
-  }
-  
-  /*  */
-  .container .card .card-body {
-    text-align: center;
-  }
-  
-  .container .card .card-body .imgPhrase {
-    border-radius: 5px;
-    box-shadow: 0 0 10px #000000;
-  }
-  
-  body .carousel-inner img {
-    height: 500px;
-  }
-  
-  body h1 {
-    text-align: start;
-    font-family: 'Arial';
-  }
-  
-  body h2 {
-    font-family: 'Arial';
-  }
-  
-  .first-multimedia .row .col {
-    padding-top: 20px;
-  }
-  
-  .second-multimedia .row .col {
-    padding-top: 20px;
-  }
-  
-  .btn.btn-primary.content-button {
-    background-color: #00ACDF;
-  }
-  
-  .btn.btn-primary.content-button:hover {
-    background-color: #2D82A6;
-  }
-  
-  .square-box {
-    border: 1px solid;
-  }
-  
-  .breadcumbIndex {
-    background-color: white;
-  }
-  </style>
-  
+]);
+
+onMounted(() => {
+  AOS.init({ duration: 800, once: true });
+});
+</script>
+
+<style scoped>
+.devweb-container {
+  color: #e2e8f0;
+  min-height: 80vh;
+}
+.hero-section {
+  position: relative;
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, rgba(15, 31, 57, 0.95), rgba(5, 16, 36, 0.98));
+  text-align: center;
+}
+.hero-tag {
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #00acdf;
+  margin-bottom: 16px;
+}
+.hero-text {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #94a3b8;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.intro-section {
+  padding: 50px 0;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 28px;
+}
+.intro-body h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.intro-body p {
+  color: #94a3b8;
+  line-height: 1.7;
+}
+.topics-section {
+  padding: 40px 0 70px;
+}
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.topic-card {
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+.topic-card:hover {
+  transform: translateY(-8px);
+  border-color: #00acdf;
+  box-shadow: 0 12px 30px rgba(0, 172, 223, 0.2);
+}
+.card-icon {
+  color: #00acdf;
+  margin-bottom: 16px;
+}
+.topic-card h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.topic-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+</style>

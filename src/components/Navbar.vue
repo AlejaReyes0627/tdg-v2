@@ -9,7 +9,7 @@
 
       <n-space class="nav-menu" :size="32">
 
-        <!-- 🔹 NUEVO DROPDOWN PARA INGENIERÍA DE SOFTWARE -->
+        <!-- 🔹 DROPDOWN PARA INGENIERÍA DE SOFTWARE -->
         <n-dropdown :options="iswOptions" @select="handleIswSelect" placement="bottom" trigger="hover"
           :show-arrow="true">
           <div class="nav-item dropdown-trigger">
@@ -23,6 +23,7 @@
           </div>
         </n-dropdown>
 
+        <!-- 🔹 DROPDOWN PARA DESARROLLO WEB -->
         <n-dropdown :options="webDevOptions" @select="handleWebDevSelect" placement="bottom" trigger="hover"
           :show-arrow="true">
           <div class="nav-item dropdown-trigger">
@@ -36,14 +37,16 @@
           </div>
         </n-dropdown>
 
-        <div class="nav-item">
+        <!-- 🔹 GESTIÓN Y CONFIGURACIÓN -->
+        <router-link to="/isw/devops" class="nav-item" active-class="active">
           <n-icon size="22" class="nav-icon">
             <GitBranchOutline />
           </n-icon>
           <span>{{ $t('softwareConfig_tittle') }}</span>
-        </div>
+        </router-link>
 
       </n-space>
+
       <router-link to="/githubActivity" class="nav-item" active-class="active">
         {{ $t('github_activity') }}
       </router-link>
@@ -71,7 +74,7 @@
       <n-drawer-content :title="$t('menu')" closable>
         <n-space vertical :size="16">
 
-          <!-- 🔹 Dropdown móvil para Ingeniería de Software -->
+          <!-- Dropdown móvil para Ingeniería de Software -->
           <n-collapse>
             <n-collapse-item :title="$t('isw_tittle')">
               <n-space vertical :size="8">
@@ -83,6 +86,7 @@
             </n-collapse-item>
           </n-collapse>
 
+          <!-- Dropdown móvil para Desarrollo Web -->
           <n-collapse>
             <n-collapse-item :title="$t('webDevelop_tittle')">
               <n-space vertical :size="8">
@@ -94,7 +98,7 @@
             </n-collapse-item>
           </n-collapse>
 
-          <router-link to="/" class="mobile-nav-item" @click="showMobileMenu = false" active-class="active">
+          <router-link to="/isw/devops" class="mobile-nav-item" @click="showMobileMenu = false" active-class="active">
             <n-icon size="20">
               <GitBranchOutline />
             </n-icon>
@@ -120,7 +124,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
+import { defineComponent, ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import AOS from 'aos';
@@ -130,6 +134,7 @@ import { WebFilled, ArrowDownwardFilled } from '@vicons/material';
 import SelectLang from './SelectLang.vue';
 
 export default defineComponent({
+  name: 'Navbar',
   components: {
     HatGraduation20Regular,
     ContactCardGroup20Regular,
@@ -145,31 +150,38 @@ export default defineComponent({
     const { t } = useI18n();
     const showMobileMenu = ref(false);
 
-    // 🔹 Nuevo temario de Ingeniería de Software (actualizado)
-    const iswOptions = [
-      { label: 'Fundamentos de Ingeniería de Software', key: 'fundamentos' },
-      { label: 'Modelos y Metodologías Ágiles', key: 'metodologias-agiles' },
-      { label: 'Arquitectura de Software y Microservicios', key: 'arquitectura' },
-      { label: 'Pruebas y Aseguramiento de la Calidad', key: 'qa' },
-      { label: 'Gestión de Proyectos y DevOps', key: 'devops' },
-      { label: 'Inteligencia Artificial Aplicada al Desarrollo', key: 'ia' },
-      { label: 'Ética y Sostenibilidad en el Software', key: 'etica' }
-    ];
+    const iswOptions = computed(() => [
+      { label: t('isw_nav.overview'), key: 'overview' },
+      { label: t('isw_nav.architect'), key: 'architect' },
+      { label: t('isw_nav.qa'), key: 'qa' },
+      { label: t('isw_nav.devops'), key: 'devops' },
+      { label: t('isw_nav.ia'), key: 'ia' },
+      { label: t('isw_nav.etica'), key: 'etica' }
+    ]);
 
-    const webDevOptions = [
-      { label: 'HTML & CSS', key: 'html-css' },
-      { label: 'JavaScript Avanzado', key: 'js-avanzado' },
-      { label: 'Frameworks Frontend', key: 'frameworks' },
-      { label: 'Optimización y Accesibilidad Web', key: 'optimización' },
-      { label: 'Integración con APIs y Backend', key: 'api-integration' }
-    ];
+    const webDevOptions = computed(() => [
+      { label: t('web_nav.overview'), key: 'overview' },
+      { label: t('web_nav.html_css'), key: 'html-css' },
+      { label: t('web_nav.js_avanzado'), key: 'js-avanzado' },
+      { label: t('web_nav.frameworks'), key: 'frameworks' },
+      { label: t('web_nav.api_integration'), key: 'api_integration' },
+      { label: t('web_nav.optimizacion'), key: 'optimizacion' }
+    ]);
 
     const handleIswSelect = (key: string) => {
-      router.push(`/isw/${key}`);
+      if (key === 'overview') {
+        router.push('/isw');
+      } else {
+        router.push(`/isw/${key}`);
+      }
     };
 
     const handleWebDevSelect = (key: string) => {
-      router.push(`/webdev/${key}`);
+      if (key === 'overview') {
+        router.push('/dev-web');
+      } else {
+        router.push(`/dev-web/${key}`);
+      }
     };
 
     const updateScreenSize = () => {
@@ -201,14 +213,12 @@ export default defineComponent({
 });
 </script>
 
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   font-family: 'Inter', sans-serif;
 }
-
 
 .navbar {
   background: rgba(15, 31, 57, 0.85);
@@ -230,9 +240,7 @@ export default defineComponent({
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-
 }
-
 
 .logo-link {
   display: flex;
@@ -246,7 +254,6 @@ export default defineComponent({
 }
 
 .logo-link:hover {
-  color: #114177;
   transform: translateY(-1px);
 }
 
@@ -261,7 +268,7 @@ export default defineComponent({
 }
 
 .logo-text {
-  background: linear-gradient(90deg, #00acdf, #ffff);
+  background: linear-gradient(90deg, #00acdf, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
@@ -274,6 +281,7 @@ export default defineComponent({
 .nav-item {
   position: relative;
   display: flex;
+  align-items: center;
   gap: 8px;
   color: #e2e8f0;
   font-weight: 500;
@@ -299,7 +307,6 @@ export default defineComponent({
   transform: scale(1.15) rotate(8deg);
 }
 
-
 .dropdown-trigger {
   position: relative;
 }
@@ -312,7 +319,6 @@ export default defineComponent({
 .dropdown-trigger:hover .dropdown-arrow {
   transform: rotate(180deg);
 }
-
 
 .nav-actions {
   display: flex;
@@ -334,7 +340,6 @@ export default defineComponent({
   }
 }
 
-
 .hamburger-btn {
   color: white;
   padding: 8px;
@@ -347,7 +352,6 @@ export default defineComponent({
   transform: scale(1.1);
 }
 
-
 .mobile-drawer :deep(.n-drawer-header) {
   border-bottom: 1px solid rgba(96, 165, 250, 0.2);
   color: #114177;
@@ -358,15 +362,13 @@ export default defineComponent({
   padding: 8px 0;
 }
 
-
-
 .mobile-nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
   border-radius: 12px;
-  color: black;
+  color: #e2e8f0;
   font-family: 'Inter', sans-serif !important;
   font-weight: 500 !important;
   font-size: 0.95rem !important;
@@ -385,7 +387,7 @@ export default defineComponent({
 .mobile-nav-item:hover {
   background: rgba(96, 165, 250, 0.18);
   transform: translateX(4px);
-  color: #114177;
+  color: #00acdf;
 }
 
 .mobile-dropdown-item {
@@ -402,7 +404,7 @@ export default defineComponent({
 
 .mobile-dropdown-item:hover {
   background: rgba(96, 165, 250, 0.18);
-  color: #114177;
+  color: #00acdf;
   transform: translateX(4px);
 }
 
